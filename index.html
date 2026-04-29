@@ -16,7 +16,7 @@
 
     header {
       height: 100vh;
-      background: radial-gradient(circle at center, rgba(140,0,0,0.55) 0%, rgba(60,0,0,0.35) 28%, #090909 58%, #030303 100%);
+      background: #000000;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -27,7 +27,10 @@
     }
 
     .logo {
-      font-size: 5rem;
+      position: absolute;
+      top: 28px;
+      left: 32px;
+      font-size: 3.2rem;
       font-weight: 900;
       letter-spacing: 6px;
       color: #ffffff;
@@ -39,6 +42,10 @@
     }
 
     .sub {
+      position: absolute;
+      top: 78px;
+      left: 34px;
+      text-align: left;
       margin-top: 10px;
       font-size: 1rem;
       opacity: 0.92; letter-spacing: 2px; font-weight: 600;
@@ -65,6 +72,18 @@
       font-weight: 600;
       cursor: pointer;
       border-radius: 30px;
+    }
+
+    .hero-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #c40000;
+      padding: 16px 42px;
+      font-size: 1.2rem;
+      z-index: 3;
+      box-shadow: 0 0 18px rgba(255,0,0,0.35);
       transition: 0.3s;
       text-decoration: none;
     }
@@ -150,8 +169,8 @@
     .speed-lines {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(90deg, transparent 0px, transparent 90px, rgba(255,255,255,0.04) 92px, transparent 96px);
-      animation: streak 1.2s linear infinite;
+      background: transparent;
+      animation: none;
       z-index: 0;
     }
 
@@ -199,7 +218,7 @@
   <div class="logo">RPM</div>
   <div class="sub">Revolutions Per Minute</div>
   <div class="tag">Ferrari-inspired Motorsport Jerseys</div>
-  <a class="btn" href="#shop">Shop Now</a>
+  <a class="btn hero-btn" href="#shop">Ferrari</a>
 </header>
 
 <section id="shop">
