@@ -123,13 +123,13 @@
     }
   .hero-car {
       position: absolute;
-      width: 900px;
+      width: 760px;
       max-width: 95vw;
-      bottom: 8%;
-      left: -70%;
+      bottom: 14%;
+      left: -90%;
       opacity: 0.95;
       z-index: 1;
-      animation: raceIn 2.2s cubic-bezier(.2,.8,.2,1) forwards;
+      animation: raceBlast 0.9s cubic-bezier(.1,.9,.2,1) 0.4s forwards;
       filter: drop-shadow(0 0 20px rgba(255,0,0,0.25));
     }
 
@@ -141,8 +141,12 @@
       z-index: 0;
     }
 
-    @keyframes raceIn {
-      0% { left: -80%; transform: translateY(0) scale(1); }
+    @keyframes raceBlast {
+      0% { left: -90%; opacity: 0; transform: scale(0.92); }
+      8% { opacity: 1; }
+      65% { left: 45%; opacity: 1; transform: scale(1); }
+      100% { left: 120%; opacity: 0; transform: scale(1.03); }
+    }
       70% { left: 8%; transform: translateY(-4px) scale(1.02); }
       100% { left: 2%; transform: translateY(0) scale(1); }
     }
@@ -162,7 +166,7 @@
 
 <header>
   <div class="speed-lines"></div>
-  <img class="hero-car" src="Gemini_Generated_Image_4wmt3f4wmt3f4wmt.png" alt="RPM Race Car">
+  <img class="hero-car" src="car.png" alt="RPM Race Car">
   <div class="logo">RPM</div>
   <div class="sub">Revolutions Per Minute</div>
   <div class="tag">Ferrari-inspired Motorsport Jerseys</div>
