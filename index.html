@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revolutions Per Minute (RPM)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>RPM | Revolutions Per Minute</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Orbitron', sans-serif;
       background: #0b0b0b;
       color: #fff;
       overflow-x: hidden;
@@ -16,31 +16,44 @@
 
     header {
       height: 100vh;
-      background: radial-gradient(circle at top, #ff1e1e, #0b0b0b 60%);
+      background: #050505;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
     .logo {
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: 3px;
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255,0,0,0.6);
+      z-index: 3;
+      animation: fadeUp 2s ease forwards;
+      opacity: 0;
+      font-family: 'Bebas Neue', sans-serif;
     }
 
     .sub {
       margin-top: 10px;
-      font-size: 1.2rem;
-      opacity: 0.8;
+      font-size: 1rem;
+      opacity: 0.85;
+      z-index: 3;
+      animation: fadeUp 2.5s ease forwards;
+      opacity: 0;
     }
 
     .tag {
       margin-top: 20px;
       font-size: 0.9rem;
       color: #ff3b3b;
+      z-index: 3;
+      animation: fadeUp 3s ease forwards;
+      opacity: 0;
     }
 
     .btn {
@@ -108,11 +121,48 @@
       font-size: 0.9rem;
       opacity: 0.7;
     }
+  .hero-car {
+      position: absolute;
+      width: 900px;
+      max-width: 95vw;
+      bottom: 8%;
+      left: -70%;
+      opacity: 0.95;
+      z-index: 1;
+      animation: raceIn 2.2s cubic-bezier(.2,.8,.2,1) forwards;
+      filter: drop-shadow(0 0 20px rgba(255,0,0,0.25));
+    }
+
+    .speed-lines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, transparent 0px, transparent 90px, rgba(255,255,255,0.04) 92px, transparent 96px);
+      animation: streak 1.2s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes raceIn {
+      0% { left: -80%; transform: translateY(0) scale(1); }
+      70% { left: 8%; transform: translateY(-4px) scale(1.02); }
+      100% { left: 2%; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes streak {
+      from { transform: translateX(0); }
+      to { transform: translateX(120px); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
 <header>
+  <div class="speed-lines"></div>
+  <img class="hero-car" src="Gemini_Generated_Image_4wmt3f4wmt3f4wmt.png" alt="RPM Race Car">
   <div class="logo">RPM</div>
   <div class="sub">Revolutions Per Minute</div>
   <div class="tag">Ferrari-inspired Motorsport Jerseys</div>
