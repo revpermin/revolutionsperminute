@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RPM | Revolutions Per Minute</title>
+  <title>Revolutions.per.minute | Revolutions Per Minute</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Titillium+Web:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     body {
@@ -16,7 +16,7 @@
 
     header {
       height: 100vh;
-      background: #000000;
+      background: #ffffff;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -28,30 +28,24 @@
 
     .logo {
       position: absolute;
-      top: 28px;
-      left: 32px;
-      font-size: 3.35rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5.4rem;
       font-weight: 900;
-      letter-spacing: 4px;
-      color: #ffffff;
-      text-shadow: 0 0 14px rgba(255,0,0,0.65), 0 0 30px rgba(255,40,40,0.18);
+      letter-spacing: 3px;
+      color: #d40000;
+      text-shadow: none;
       z-index: 3;
-      animation: fadeUp 2s ease forwards;
+      animation: fadeUp 1.4s ease forwards;
       opacity: 0;
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Titillium Web', sans-serif;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .sub {
-      position: absolute;
-      top: 78px;
-      left: 34px;
-      text-align: left;
-      margin-top: 10px;
-      font-size: 1rem;
-      opacity: 0.95; letter-spacing: 2.5px; font-weight: 600; font-family: 'Rajdhani', sans-serif; text-transform: uppercase;
-      z-index: 3;
-      animation: fadeUp 2.5s ease forwards;
-      opacity: 0;
+      display: none;
     }
 
     .tag {
@@ -74,19 +68,7 @@
       border-radius: 30px;
     }
 
-    .hero-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #c40000;
-      padding: 16px 42px;
-      font-size: 1.25rem; font-family: 'Titillium Web', sans-serif; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
-      z-index: 3;
-      box-shadow: 0 0 18px rgba(255,0,0,0.35);
-      transition: 0.3s;
-      text-decoration: none;
-    }
+    
 
     .btn:hover {
       background: #ff3b3b;
@@ -218,7 +200,7 @@
   <div class="logo">RPM</div>
   <div class="sub">Revolutions Per Minute</div>
   <div class="tag">Ferrari-inspired Motorsport Jerseys</div>
-  <a class="btn hero-btn" href="#shop">Ferrari</a>
+  
 </header>
 
 <section id="shop">
