@@ -125,11 +125,11 @@
       position: absolute;
       width: 520px;
       max-width: 95vw;
-      bottom: 18%;
+      bottom: 10%;
       left: -90%;
       opacity: 0.95;
       z-index: 1;
-      animation: raceBlast 0.9s cubic-bezier(.1,.9,.2,1) 0.4s forwards;
+      animation: raceBlast 0.75s linear 0.35s forwards;
       filter: drop-shadow(0 0 20px rgba(255,0,0,0.25));
     }
 
@@ -138,13 +138,13 @@
       width: 420px;
       height: 120px;
       left: -35%;
-      bottom: 22%;
+      bottom: 13%;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,255,255,0.28) 0%, rgba(255,0,0,0.18) 35%, rgba(255,255,255,0.08) 55%, transparent 75%);
-      filter: blur(22px);
+      background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.28) 25%, rgba(255,0,0,0.22) 48%, rgba(255,255,255,0.12) 62%, transparent 78%);
+      filter: blur(28px);
       opacity: 0;
       z-index: 0;
-      animation: smokeBlast 0.95s ease-out 0.42s forwards;
+      animation: smokeBlast 1.1s ease-out 0.36s forwards;
     }
 
     .speed-lines {
@@ -156,7 +156,10 @@
     }
 
     @keyframes raceBlast {
-      0% { left: -90%; opacity: 0; transform: scale(0.92); }
+      0% { left: -95%; opacity: 0; transform: scale(0.94); }
+      6% { opacity: 1; }
+      100% { left: 145%; opacity: 0; transform: scale(1.02); visibility: hidden; }
+    }
       8% { opacity: 1; }
       65% { left: 45%; opacity: 1; transform: scale(1); }
       100% { left: 145%; opacity: 0; transform: scale(1.06); visibility: hidden; }
@@ -166,7 +169,11 @@
     }
 
     @keyframes smokeBlast {
-      0% { left: -40%; opacity: 0; transform: scale(.7); }
+      0% { left: -42%; opacity: 0; transform: scale(.7); }
+      12% { opacity: 1; }
+      55% { left: 28%; opacity: .85; transform: scale(1.15); }
+      100% { left: 95%; opacity: 0; transform: scale(1.55); }
+    }
       15% { opacity: .9; }
       70% { left: 42%; opacity: .55; transform: scale(1.15); }
       100% { left: 110%; opacity: 0; transform: scale(1.4); }
