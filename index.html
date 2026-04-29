@@ -1,249 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revolutions Per Minute | Revolutions Per Minute</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Titillium+Web:wght@400;600;700;900&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Titillium Web', sans-serif;
-      background: #0b0b0b;
-      color: #fff;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revolutions Per Minute</title>
 
-    header {
-      height: 100vh;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700;900&display=swap" rel="stylesheet">
 
-    .logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 5.4rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #d40000;
-      text-shadow: none;
-      z-index: 3;
-      animation: fadeUp 1.4s ease forwards;
-      opacity: 0;
-      font-family: 'Titillium Web', sans-serif;
-      text-transform: uppercase;
-      white-space: nowrap;
-      text-align: center;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    .sub {
-      display: none;
-    }
+body{
+    background:#ffffff;
+    overflow:hidden;
+    height:100vh;
+    width:100%;
+    font-family:'Titillium Web',sans-serif;
+}
 
-    .tag {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: #ff5b5b; letter-spacing: 3px; font-weight: 700;
-      z-index: 3;
-      animation: fadeUp 3s ease forwards;
-      opacity: 0;
-    }
+/* CENTER BRAND NAME */
+.brand{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:5rem;
+    font-weight:900;
+    color:#d10000;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    white-space:nowrap;
+    z-index:5;
+}
 
-    .btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      background: #ff1e1e;
-      border: none;
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 30px;
-    }
+/* CAR */
+.car{
+    position:absolute;
+    bottom:8%;
+    left:-40%;
+    width:420px;
+    z-index:4;
+    animation:run 0.75s linear forwards;
+    animation-delay:0.5s;
+}
 
-    
+/* SMOKE */
+.smoke{
+    position:absolute;
+    bottom:10%;
+    left:-30%;
+    width:260px;
+    height:90px;
+    border-radius:50%;
+    background:rgba(180,180,180,0.35);
+    filter:blur(25px);
+    animation:smoke 1s linear forwards;
+    animation-delay:0.5s;
+    z-index:1;
+}
 
-    .btn:hover {
-      background: #ff3b3b;
-      transform: scale(1.05);
+/* CAR MOVEMENT */
+@keyframes run{
+    0%{
+        left:-45%;
+        opacity:1;
     }
+    100%{
+        left:120%;
+        opacity:0;
+    }
+}
 
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
+/* SMOKE MOVEMENT */
+@keyframes smoke{
+    0%{
+        left:-30%;
+        opacity:0;
     }
+    20%{
+        opacity:1;
+    }
+    100%{
+        left:90%;
+        opacity:0;
+    }
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      color: #ff1e1e;
-    }
+/* MOBILE */
+@media(max-width:768px){
+.brand{
+    font-size:2.4rem;
+    text-align:center;
+    width:90%;
+    white-space:normal;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+.car{
+    width:260px;
+    bottom:7%;
+}
 
-    .card {
-      background: #151515;
-      border-radius: 15px;
-      overflow: hidden;
-      padding: 20px;
-      border: 1px solid #222;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #ff1e1e;
-    }
-
-    .jersey-img {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(45deg, #ff1e1e, #111);
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      background: #000;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-  .hero-car {
-      position: absolute;
-      width: 520px;
-      max-width: 95vw;
-      bottom: 10%;
-      left: -90%;
-      opacity: 0.95;
-      z-index: 1;
-      animation: raceBlast 0.75s linear 0.35s forwards;
-      filter: drop-shadow(0 0 20px rgba(255,0,0,0.25));
-    }
-
-    .smoke-trail {
-      position: absolute;
-      width: 420px;
-      height: 120px;
-      left: -35%;
-      bottom: 13%;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.28) 25%, rgba(255,0,0,0.22) 48%, rgba(255,255,255,0.12) 62%, transparent 78%);
-      filter: blur(28px);
-      opacity: 0;
-      z-index: 0;
-      animation: smokeBlast 1.1s ease-out 0.36s forwards;
-    }
-
-    .speed-lines {
-      position: absolute;
-      inset: 0;
-      background: transparent;
-      animation: none;
-      z-index: 0;
-    }
-
-    @keyframes raceBlast {
-      0% { left: -95%; opacity: 0; transform: scale(0.94); }
-      6% { opacity: 1; }
-      100% { left: 145%; opacity: 0; transform: scale(1.02); visibility: hidden; }
-    }
-      8% { opacity: 1; }
-      65% { left: 45%; opacity: 1; transform: scale(1); }
-      100% { left: 145%; opacity: 0; transform: scale(1.06); visibility: hidden; }
-    }
-      70% { left: 8%; transform: translateY(-4px) scale(1.02); }
-      100% { left: 2%; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes smokeBlast {
-      0% { left: -42%; opacity: 0; transform: scale(.7); }
-      12% { opacity: 1; }
-      55% { left: 28%; opacity: .85; transform: scale(1.15); }
-      100% { left: 95%; opacity: 0; transform: scale(1.55); }
-    }
-      15% { opacity: .9; }
-      70% { left: 42%; opacity: .55; transform: scale(1.15); }
-      100% { left: 110%; opacity: 0; transform: scale(1.4); }
-    }
-
-    @keyframes streak {
-      from { transform: translateX(0); }
-      to { transform: translateX(120px); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+.smoke{
+    width:180px;
+}
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <div class="speed-lines"></div>
-  <div class="smoke-trail"></div>
-  <img class="hero-car" src="car.png" alt="RPM Race Car">
-  <div class="logo">RPM</div>
-  <div class="sub">Revolutions Per Minute</div>
-  <div class="tag">Ferrari-inspired Motorsport Jerseys</div>
-  
-</header>
+<div class="brand">Revolutions Per Minute</div>
 
-<section id="shop">
-  <h2>Featured Jerseys</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="jersey-img"></div>
-      <h3>Ferrari Red Edition</h3>
-      <p>Premium motorsport inspired jersey.</p>
-    </div>
-
-    <div class="card">
-      <div class="jersey-img"></div>
-      <h3>RPM Black Velocity</h3>
-      <p>Stealth performance streetwear.</p>
-    </div>
-
-    <div class="card">
-      <div class="jersey-img"></div>
-      <h3>Track Edition 2026</h3>
-      <p>Inspired by racing heritage.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>About RPM</h2>
-  <p style="text-align:center; opacity:0.8; line-height:1.6;">
-    RPM is a motorsport-inspired streetwear brand built around speed, precision, and racing culture. 
-    Starting with Ferrari-inspired jerseys, we bring track energy into everyday wear.
-  </p>
-</section>
-
-<section style="text-align:center;">
-  <h2>Connect</h2>
-  <p>Follow us on Instagram for drops & updates</p>
-  <a class="btn" href="https://instagram.com/revolutions.perminute" target="_blank">Instagram</a>
-</section>
-
-<footer>
-  © 2026 RPM - Revolutions Per Minute. Built for speed.
-</footer>
+<img src="car.png" class="car">
+<div class="smoke"></div>
 
 </body>
 </html>
