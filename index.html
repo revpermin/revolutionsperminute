@@ -15,145 +15,180 @@
 }
 
 body{
-    background:#ffffff;
+    background:#fff;
     font-family:'Montserrat',sans-serif;
-    overflow:hidden;
-    height:100vh;
-    width:100%;
-    position:relative;
+    overflow-x:hidden;
 }
 
-/* TOP BRAND */
+/* HEADER */
+header{
+    position:relative;
+    width:100%;
+    padding:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* BRAND */
 .brand{
-    text-align:center;
     font-size:1.5rem;
     font-weight:700;
-    color:#000;
-    margin-top:18px;
     text-transform:lowercase;
     letter-spacing:1px;
 }
 
-/* MAIN AREA */
+/* HAMBURGER */
+.menu-btn{
+    position:absolute;
+    left:18px;
+    top:18px;
+    width:30px;
+    height:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    cursor:pointer;
+    z-index:1001;
+}
+
+.menu-btn span{
+    height:3px;
+    background:#000;
+    border-radius:2px;
+    transition:0.3s;
+}
+
+/* X ANIMATION */
+.menu-btn.active span:nth-child(1){
+    transform:rotate(45deg) translate(5px,5px);
+}
+.menu-btn.active span:nth-child(2){
+    opacity:0;
+}
+.menu-btn.active span:nth-child(3){
+    transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* CART */
+.cart{
+    position:absolute;
+    right:18px;
+    top:18px;
+    font-size:22px;
+    text-decoration:none;
+    color:#000;
+}
+
+/* SIDE MENU */
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:240px;
+    height:100vh;
+    background:#000;
+    color:#fff;
+    padding:80px 20px;
+    transition:0.3s;
+    z-index:1000;
+}
+
+.side-menu a{
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    font-size:1.2rem;
+    margin-bottom:20px;
+    font-weight:500;
+}
+
+.side-menu.active{
+    left:0;
+}
+
+/* MAIN */
 .main{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:18px;
-    margin-top:28px;
+    margin-top:20px;
 }
 
-/* IDENTICAL SQUARES */
+/* BOX */
 .square{
     width:88vw;
     max-width:340px;
     height:170px;
     background:#000;
     border-radius:16px;
+    overflow:hidden;
     display:flex;
     justify-content:center;
     align-items:center;
-    overflow:hidden;
-    position:relative;
 }
 
-/* COLLECTIONS BUTTON */
+/* COLLECTION */
 .collections{
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     color:#fff;
-    text-decoration:none;
     font-family:'Bebas Neue',sans-serif;
     font-size:3.4rem;
-    letter-spacing:2px;
-    text-transform:uppercase;
+    text-decoration:none;
 }
 
-/* SLIDESHOW */
+/* SLIDER FIX */
 .slider-track{
     width:300%;
     height:100%;
     display:flex;
-    animation:slide 12s infinite;
+    animation:slide 10s infinite;
 }
 
 .slider-track img{
     width:100%;
     height:100%;
+    flex:0 0 100%;
     object-fit:cover;
 }
 
-/* CAR */
-.car{
-    position:absolute;
-    bottom:5%;
-    left:-45%;
-    width:290px;
-    z-index:2;
-    animation:run 0.75s linear forwards;
-    animation-delay:0.5s;
-}
-
-/* CAR RUN */
-@keyframes run{
-    0%{
-        left:-45%;
-        opacity:1;
-    }
-    100%{
-        left:120%;
-        opacity:0;
-    }
-}
-
-/* SLIDER */
+/* SLIDE */
 @keyframes slide{
-    0%,30%{
-        transform:translateX(0%);
-    }
-    33%,63%{
-        transform:translateX(-33.333%);
-    }
-    66%,96%{
-        transform:translateX(-66.666%);
-    }
-    100%{
-        transform:translateX(0%);
-    }
+    0%,30%{transform:translateX(0%);}
+    33%,63%{transform:translateX(-33.333%);}
+    66%,96%{transform:translateX(-66.666%);}
+    100%{transform:translateX(0%);}
 }
 
-/* TABLET+ */
+/* RESPONSIVE */
 @media(min-width:768px){
-
-.brand{
-    font-size:2rem;
-    margin-top:25px;
-}
-
-.square{
-    width:360px;
-    height:190px;
-}
-
-.collections{
-    font-size:4rem;
-}
-
-.car{
-    width:420px;
-}
-
+    .brand{font-size:2rem;}
+    .square{width:360px;height:190px;}
+    .collections{font-size:4rem;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="brand">rev per min.</div>
+<header>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="brand">rev per min.</div>
+
+    <a href="cart.html" class="cart">🛒</a>
+</header>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="menu">
+    <a href="index.html">Home</a>
+    <a href="collections.html">Collections</a>
+</div>
 
 <div class="main">
 
@@ -163,15 +198,20 @@ body{
 
     <div class="square">
         <div class="slider-track">
-            <img src="img1.jpg" alt="slide1">
-            <img src="img2.jpg" alt="slide2">
-            <img src="img3.jpg" alt="slide3">
+            <img src="img1.jpg">
+            <img src="img2.jpg">
+            <img src="img3.jpg">
         </div>
     </div>
 
 </div>
 
-<img src="car.png" class="car" alt="car">
+<script>
+function toggleMenu(){
+    document.querySelector(".menu-btn").classList.toggle("active");
+    document.getElementById("menu").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
