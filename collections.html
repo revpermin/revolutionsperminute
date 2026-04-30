@@ -41,55 +41,37 @@ header{
     color:#000;
 }
 
-/* GRID (just spacing, no boxes) */
+/* PAGE WRAP */
 .grid{
     display:flex;
     flex-direction:column;
-    gap:35px;
-    padding:16px;
     align-items:center;
+    gap:35px;
+    padding:20px 0;
 }
 
-/* PRODUCT WRAPPER (NO BOX STYLE) */
+/* PRODUCT BLOCK */
 .product{
     width:92vw;
     max-width:340px;
+    text-align:center;
 }
 
-/* SLIDER */
-.slider{
-    width:100%;
-    height:200px;
-    overflow:hidden;
-    position:relative;
-}
-
-.slider-track{
-    width:300%;
-    height:100%;
+/* IMAGE ROW (NO SLIDER) */
+.image-row{
     display:flex;
-    animation:slide 8s infinite;
+    gap:10px;
 }
 
-.slider-track img{
-    width:100%;
-    height:100%;
-    flex-shrink:0;
+/* IMAGES */
+.image-row img{
+    width:50%;
+    height:180px;
     object-fit:contain;
     background:#fff;
 }
 
-/* SLIDE ANIMATION */
-@keyframes slide{
-    0%{transform:translateX(0%);}
-    30%{transform:translateX(0%);}
-    35%{transform:translateX(-100%);}
-    65%{transform:translateX(-100%);}
-    70%{transform:translateX(-200%);}
-    100%{transform:translateX(0%);}
-}
-
-/* DESCRIPTION (plain text only) */
+/* TEXT */
 .desc{
     margin-top:10px;
 }
@@ -106,14 +88,18 @@ header{
 }
 
 .price{
-    margin-top:5px;
+    margin-top:6px;
     font-weight:700;
 }
 
-/* RESPONSIVE */
+/* DESKTOP */
 @media(min-width:768px){
     .product{
         max-width:360px;
+    }
+
+    .image-row img{
+        height:200px;
     }
 }
 
@@ -131,11 +117,9 @@ header{
 
     <!-- PRODUCT 1 -->
     <div class="product">
-        <div class="slider">
-            <div class="slider-track">
-                <img src="assets/products/product1.jpg">
-                <img src="assets/products/product2.jpg">
-            </div>
+        <div class="image-row">
+            <img src="assets/products/product1.jpg">
+            <img src="assets/products/product2.jpg">
         </div>
         <div class="desc">
             <h2>Ferrari Jersey</h2>
@@ -146,11 +130,9 @@ header{
 
     <!-- PRODUCT 2 -->
     <div class="product">
-        <div class="slider">
-            <div class="slider-track">
-                <img src="assets/products/product1.jpg">
-                <img src="assets/products/product2.jpg">
-            </div>
+        <div class="image-row">
+            <img src="assets/products/product1.jpg">
+            <img src="assets/products/product2.jpg">
         </div>
         <div class="desc">
             <h2>Red Bull Jersey</h2>
@@ -161,11 +143,9 @@ header{
 
     <!-- PRODUCT 3 -->
     <div class="product">
-        <div class="slider">
-            <div class="slider-track">
-                <img src="assets/products/product1.jpg">
-                <img src="assets/products/product2.jpg">
-            </div>
+        <div class="image-row">
+            <img src="assets/products/product1.jpg">
+            <img src="assets/products/product2.jpg">
         </div>
         <div class="desc">
             <h2>Mercedes Jersey</h2>
