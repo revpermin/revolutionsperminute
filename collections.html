@@ -17,51 +17,52 @@
 body{
     font-family:'Montserrat',sans-serif;
     background:#fff;
+    overflow-x:hidden;
 }
 
 /* HEADER */
 header{
     position:relative;
-    padding:18px;
+    padding:16px;
     text-align:center;
     font-weight:700;
     font-size:1.4rem;
     text-transform:lowercase;
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back{
     position:absolute;
-    left:18px;
-    top:18px;
+    left:16px;
+    top:16px;
     text-decoration:none;
     font-size:1rem;
     color:#000;
 }
 
-/* GRID - FIXED MOBILE ALIGNMENT */
+/* GRID */
 .grid{
     display:grid;
     grid-template-columns:1fr;
-    gap:16px;
-    padding:16px;
+    gap:14px;
+    padding:14px;
     justify-items:center;
 }
 
-/* PRODUCT CARD */
+/* CARD - FIXED MOBILE SCALE */
 .card{
-    width:92vw;
-    max-width:360px;
+    width:90vw;              /* 👈 key fix (prevents zoom feel) */
+    max-width:340px;
     background:#f4f4f4;
-    border-radius:16px;
-    padding:14px;
+    border-radius:14px;
+    padding:12px;
     text-align:center;
 }
 
 /* IMAGE FIX */
 .card img{
     width:100%;
-    height:200px;
+    height:180px;            /* slightly reduced for balance */
     object-fit:cover;
     border-radius:12px;
     display:block;
@@ -70,11 +71,11 @@ header{
 /* TEXT */
 .card h2{
     margin-top:10px;
-    font-size:1.05rem;
+    font-size:1rem;
 }
 
 .card p{
-    font-size:0.85rem;
+    font-size:0.82rem;
     color:#666;
     margin-top:4px;
 }
@@ -84,7 +85,7 @@ header{
     font-weight:700;
 }
 
-/* TABLET + DESKTOP */
+/* DESKTOP */
 @media(min-width:768px){
     .grid{
         grid-template-columns:repeat(2,1fr);
@@ -93,6 +94,7 @@ header{
 
     .card{
         width:100%;
+        max-width:360px;
     }
 }
 </style>
