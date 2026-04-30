@@ -9,104 +9,113 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    background:#fff;
-    font-family:'Montserrat',sans-serif;
-    color:#000;
-    overflow-x:hidden;
+font-family:'Montserrat',sans-serif;
+background:#fff;
+color:#111;
 }
 
 header{
-    width:100%;
-    padding:18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-    border-bottom:1px solid #eee;
+padding:18px;
+text-align:center;
+font-weight:700;
+font-size:1.1rem;
+border-bottom:1px solid #eee;
+position:relative;
 }
 
 .back{
-    position:absolute;
-    left:18px;
-    top:18px;
-    text-decoration:none;
-    color:#000;
-    font-size:1rem;
-}
-
-.brand{
-    font-size:1.2rem;
-    font-weight:700;
-    text-transform:lowercase;
+position:absolute;
+left:18px;
+top:18px;
+text-decoration:none;
+color:#111;
+font-size:14px;
 }
 
 .container{
-    width:100%;
-    max-width:420px;
-    margin:auto;
-    padding:20px;
-    text-align:center;
+max-width:420px;
+margin:auto;
+padding:22px;
+text-align:center;
 }
 
 .product-image{
-    width:100%;
-    height:340px;
-    object-fit:contain;
-    background:#fff;
+width:100%;
+height:340px;
+object-fit:contain;
 }
 
 h1{
-    margin-top:18px;
-    font-size:1.2rem;
-    line-height:1.4;
-}
-
-.fit{
-    margin-top:8px;
-    color:#666;
-    font-size:0.95rem;
+font-size:1.2rem;
+margin-top:18px;
+line-height:1.4;
 }
 
 .price{
-    margin-top:14px;
-    font-size:1.5rem;
-    font-weight:700;
+font-size:1.5rem;
+font-weight:700;
+margin-top:12px;
 }
 
 .desc{
-    margin-top:14px;
-    font-size:0.95rem;
-    color:#555;
-    line-height:1.6;
+font-size:0.92rem;
+color:#666;
+line-height:1.6;
+margin-top:12px;
+}
+
+.label{
+margin-top:24px;
+font-size:0.9rem;
+font-weight:700;
+text-align:left;
+}
+
+.sizes{
+display:flex;
+gap:10px;
+margin-top:12px;
+}
+
+.size-btn{
+flex:1;
+padding:12px;
+border:1px solid #ddd;
+background:#fff;
+border-radius:10px;
+cursor:pointer;
+font-size:0.95rem;
+}
+
+.size-btn.active{
+border:1px solid #000;
+background:#000;
+color:#fff;
 }
 
 button{
-    width:100%;
-    margin-top:24px;
-    padding:14px;
-    border:none;
-    background:#000;
-    color:#fff;
-    font-size:1rem;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-button:active{
-    transform:scale(0.98);
+width:100%;
+padding:15px;
+margin-top:24px;
+border:none;
+background:#000;
+color:#fff;
+font-size:1rem;
+border-radius:12px;
+cursor:pointer;
 }
 
 .notice{
-    margin-top:14px;
-    font-size:0.85rem;
-    color:green;
-    display:none;
+margin-top:14px;
+font-size:14px;
+color:green;
+display:none;
 }
 </style>
 </head>
@@ -114,25 +123,32 @@ button:active{
 <body>
 
 <header>
-    <a href="collections.html" class="back">← back</a>
-    <div class="brand">rev per min.</div>
+<a href="collections.html" class="back">← Back</a>
+rev per min.
 </header>
 
 <div class="container">
 
-    <img id="productImage" class="product-image">
+<img id="productImage" class="product-image">
 
-    <h1 id="productName"></h1>
+<h1 id="productName"></h1>
 
-    <div id="productFit" class="fit"></div>
+<div class="price" id="productPrice"></div>
 
-    <div id="productPrice" class="price"></div>
+<div class="desc" id="productDesc"></div>
 
-    <div id="productDesc" class="desc"></div>
+<div class="label">Select Size</div>
 
-    <button onclick="addToCart()">Add to Cart</button>
+<div class="sizes">
+<div class="size-btn" onclick="pickSize(this,'S')">S</div>
+<div class="size-btn" onclick="pickSize(this,'M')">M</div>
+<div class="size-btn" onclick="pickSize(this,'L')">L</div>
+<div class="size-btn" onclick="pickSize(this,'XL')">XL</div>
+</div>
 
-    <div class="notice" id="notice">Added to cart ✓</div>
+<button onclick="addToCart()">Add to Cart</button>
+
+<div class="notice" id="notice">Added to cart ✓</div>
 
 </div>
 
@@ -145,25 +161,22 @@ const products = {
 polo:{
 name:"Ferrari 2025 Drivers Polo Jersey",
 price:1499,
-fit:"Normal Fit",
-img:"assets/ferrari-polo.jpg",
-desc:"Premium Ferrari inspired polo jersey built for everyday wear and motorsport fans."
+img:"assets/products/ferrari_polo_2025.jpg",
+desc:"Premium Ferrari inspired jersey crafted for everyday comfort and race-day style."
 },
 
 monza:{
 name:"Ferrari Monza Edition",
 price:1599,
-fit:"Normal Fit",
-img:"assets/ferrari-monza.jpg",
-desc:"Special Monza edition jersey inspired by iconic Ferrari race heritage."
+img:"assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg",
+desc:"Special Monza edition built from iconic Ferrari racing heritage."
 },
 
 swartwell:{
-name:"Ferrari Swartwell Oversized Drivers T-Shirt",
+name:"Ferrari Oversized Drivers Tee",
 price:1299,
-fit:"Oversized Fit",
-img:"assets/ferrari-swartwell.jpg",
-desc:"Relaxed oversized streetwear fit blended with Ferrari racing culture."
+img:"assets/products/ferrari_oversized.jpg",
+desc:"Oversized motorsport streetwear fit for casual premium style."
 }
 
 };
@@ -172,33 +185,43 @@ const product = products[id] || products.polo;
 
 document.getElementById("productImage").src = product.img;
 document.getElementById("productName").innerText = product.name;
-document.getElementById("productFit").innerText = product.fit;
 document.getElementById("productPrice").innerText = "₹" + product.price;
 document.getElementById("productDesc").innerText = product.desc;
 
+let selectedSize = "";
+
+function pickSize(el,size){
+
+document.querySelectorAll(".size-btn").forEach(btn=>{
+btn.classList.remove("active");
+});
+
+el.classList.add("active");
+selectedSize = size;
+}
+
 function addToCart(){
+
+if(selectedSize===""){
+alert("Please select a size");
+return;
+}
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let existing = cart.find(item => item.name === product.name);
-
-if(existing){
-    existing.qty += 1;
-}else{
-    cart.push({
-        name:product.name,
-        price:product.price,
-        fit:product.fit,
-        qty:1
-    });
-}
+cart.push({
+name:product.name,
+price:product.price,
+size:selectedSize,
+qty:1
+});
 
 localStorage.setItem("cart", JSON.stringify(cart));
 
-document.getElementById("notice").style.display = "block";
+document.getElementById("notice").style.display="block";
 
 setTimeout(()=>{
-document.getElementById("notice").style.display = "none";
+document.getElementById("notice").style.display="none";
 },1500);
 
 }
