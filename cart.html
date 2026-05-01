@@ -47,6 +47,7 @@ flex-direction:column;
 gap:14px;
 }
 
+/* ITEM CARD */
 .item{
 border:1px solid #eee;
 border-radius:16px;
@@ -54,24 +55,44 @@ padding:14px;
 background:#fff;
 }
 
+/* TOP ROW */
+.top-row{
+display:flex;
+gap:12px;
+align-items:center;
+}
+
+.thumb{
+width:68px;
+height:68px;
+object-fit:contain;
+background:#fff;
+border-radius:12px;
+flex-shrink:0;
+}
+
+.info{
+flex:1;
+}
+
 .name{
-font-size:1rem;
+font-size:0.95rem;
 font-weight:700;
-line-height:1.4;
-margin-bottom:8px;
+line-height:1.35;
+margin-bottom:6px;
 }
 
 .meta{
-font-size:0.9rem;
+font-size:0.88rem;
 color:#666;
-margin-bottom:4px;
 }
 
+/* BOTTOM */
 .bottom-row{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:12px;
+margin-top:14px;
 gap:12px;
 }
 
@@ -111,10 +132,11 @@ cursor:pointer;
 text-decoration:underline;
 }
 
+/* SUMMARY */
 .summary{
 margin-top:22px;
-border-top:1px solid #eee;
 padding-top:18px;
+border-top:1px solid #eee;
 }
 
 .total{
@@ -125,18 +147,20 @@ font-weight:700;
 margin-bottom:18px;
 }
 
+/* CHECKOUT BUTTON */
 .checkout{
 width:100%;
 padding:15px;
-border:none;
-background:#25D366;
-color:#fff;
+border:1px solid #111;
+background:#fff;
+color:#111;
 font-size:1rem;
 font-weight:700;
-border-radius:14px;
+border-radius:12px;
 cursor:pointer;
 }
 
+/* EMPTY */
 .empty{
 text-align:center;
 padding:50px 20px;
@@ -173,12 +197,19 @@ Your Cart
 </div>
 
 <button class="checkout" onclick="checkout()">
-Proceed to WhatsApp
+Proceed to Checkout on WhatsApp
 </button>
 </div>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* IMAGE MAPPING */
+const productImages = {
+"Ferrari 2025 Drivers Polo Jersey":"assets/products/ferrari_polo_2025.jpg",
+"Ferrari Monza Edition":"assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg",
+"Ferrari Swartwell Oversized Drivers Tee":"assets/products/ferrari_oversized.jpg"
+};
 
 function renderCart(){
 
@@ -207,12 +238,21 @@ cart.forEach((item,index)=>{
 
 total += item.price * item.qty;
 
+let img = productImages[item.name] || "";
+
 container.innerHTML += `
 <div class="item">
 
-<div class="name">${item.name}</div>
+<div class="top-row">
 
+<img src="${img}" class="thumb">
+
+<div class="info">
+<div class="name">${item.name}</div>
 <div class="meta">Fit: ${item.fit}</div>
+</div>
+
+</div>
 
 <div class="bottom-row">
 
