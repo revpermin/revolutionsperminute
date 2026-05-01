@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collections</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -69,46 +69,27 @@ header{
     display:none;
 }
 
-/* GRID */
+/* PRODUCTS */
 .grid{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:34px;
-    padding:18px 0 40px;
+    gap:28px;
+    padding:20px 0 40px;
 }
 
 .item{
     width:92vw;
     max-width:340px;
-    position:relative;
 }
 
 .item img{
     width:100%;
     height:240px;
     object-fit:contain;
-    display:block;
     background:#fff;
-}
-
-/* COMING SOON STYLE */
-.soon img{
-    filter:blur(1px) brightness(0.92);
-}
-
-.coming-text{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-family:'Bebas Neue',sans-serif;
-    font-size:2rem;
-    letter-spacing:3px;
-    color:#111;
-    text-transform:uppercase;
-    opacity:0.92;
-    white-space:nowrap;
+    display:block;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -128,23 +109,25 @@ header{
 
 <div class="grid">
 
-    <!-- PRODUCT 1 READY -->
+    <!-- PRODUCT 1 -->
     <div class="item">
         <a href="product.html?id=polo">
             <img src="assets/products/ferrari_polo_2025.jpg">
         </a>
     </div>
 
-    <!-- PRODUCT 2 COMING SOON -->
-    <div class="item soon">
-        <img src="assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg">
-        <div class="coming-text">Coming Soon</div>
+    <!-- PRODUCT 2 -->
+    <div class="item">
+        <a href="product.html?id=monza">
+            <img src="assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg">
+        </a>
     </div>
 
-    <!-- PRODUCT 3 COMING SOON -->
-    <div class="item soon">
-        <img src="assets/products/ferrari_oversized.jpg">
-        <div class="coming-text">Coming Soon</div>
+    <!-- PRODUCT 3 -->
+    <div class="item">
+        <a href="product.html?id=swartwell">
+            <img src="assets/products/ferrari_oversized.jpg">
+        </a>
     </div>
 
 </div>
