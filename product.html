@@ -38,6 +38,37 @@ color:#111;
 font-size:14px;
 }
 
+/* PREMIUM CART */
+.cart-wrap{
+position:absolute;
+right:18px;
+top:18px;
+text-decoration:none;
+color:#000;
+font-size:22px;
+}
+
+.cart-count{
+position:absolute;
+top:-7px;
+right:-10px;
+background:#000;
+color:#fff;
+font-size:10px;
+min-width:18px;
+height:18px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0 4px;
+font-weight:700;
+}
+
+.cart-count.hide{
+display:none;
+}
+
 .container{
 max-width:420px;
 margin:auto;
@@ -132,7 +163,13 @@ color:#000;
 
 <header>
 <a href="collections.html" class="back">← Back</a>
+
 rev per min.
+
+<a href="cart.html" class="cart-wrap">
+🛒
+<span class="cart-count hide" id="cartCount">0</span>
+</a>
 </header>
 
 <div class="container">
@@ -215,7 +252,6 @@ document.getElementById("fitDesc").innerText =
 "Relaxed loose fit with extra comfort and streetwear vibe.";
 }
 
-/* RESET BUTTON WHEN FIT CHANGES */
 const btn = document.getElementById("cartBtn");
 btn.innerText = "Add to Cart";
 btn.classList.remove("added");
@@ -244,7 +280,31 @@ const btn = document.getElementById("cartBtn");
 btn.innerText = "Added";
 btn.classList.add("added");
 
+updateCartCount();
 }
+
+function updateCartCount(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = 0;
+
+cart.forEach(item=>{
+total += item.qty;
+});
+
+const badge = document.getElementById("cartCount");
+
+badge.innerText = total;
+
+if(total === 0){
+badge.classList.add("hide");
+}else{
+badge.classList.remove("hide");
+}
+
+}
+
+updateCartCount();
 </script>
 
 </body>
