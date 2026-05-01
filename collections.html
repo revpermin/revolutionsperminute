@@ -92,22 +92,23 @@ header{
     background:#fff;
 }
 
-/* COMING SOON */
+/* COMING SOON STYLE */
 .soon img{
-    filter:blur(1.2px) brightness(0.92);
+    filter:blur(1px) brightness(0.92);
 }
 
-.badge{
+.coming-text{
     position:absolute;
-    bottom:12px;
+    top:50%;
     left:50%;
-    transform:translateX(-50%);
+    transform:translate(-50%,-50%);
     font-family:'Bebas Neue',sans-serif;
-    font-size:1.6rem;
-    letter-spacing:2px;
+    font-size:2rem;
+    letter-spacing:3px;
     color:#111;
     text-transform:uppercase;
-    opacity:0.9;
+    opacity:0.92;
+    white-space:nowrap;
 }
 </style>
 </head>
@@ -127,23 +128,23 @@ header{
 
 <div class="grid">
 
-    <!-- READY PRODUCT -->
+    <!-- PRODUCT 1 READY -->
     <div class="item">
         <a href="product.html?id=polo">
             <img src="assets/products/ferrari_polo_2025.jpg">
         </a>
     </div>
 
-    <!-- COMING SOON 1 -->
+    <!-- PRODUCT 2 COMING SOON -->
     <div class="item soon">
         <img src="assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg">
-        <div class="badge">Coming Soon</div>
+        <div class="coming-text">Coming Soon</div>
     </div>
 
-    <!-- COMING SOON 2 -->
+    <!-- PRODUCT 3 COMING SOON -->
     <div class="item soon">
         <img src="assets/products/ferrari_oversized.jpg">
-        <div class="badge">Coming Soon</div>
+        <div class="coming-text">Coming Soon</div>
     </div>
 
 </div>
