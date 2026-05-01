@@ -25,18 +25,18 @@ color:#111;
 header{
 position:relative;
 width:100%;
-padding:14px 18px;
+padding:18px;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:96px;
+min-height:72px;
 }
 
-/* BIG LOGO */
+/* LOGO (same feel as old title size) */
 .logo{
-width:260px;
-max-width:68vw;
-height:auto;
+height:34px;
+width:auto;
+max-width:180px;
 display:block;
 object-fit:contain;
 }
@@ -45,7 +45,7 @@ object-fit:contain;
 .menu-btn{
 position:absolute;
 left:18px;
-top:36px;
+top:24px;
 width:30px;
 height:22px;
 cursor:pointer;
@@ -82,7 +82,7 @@ background:#fff;
 .cart-wrap{
 position:absolute;
 right:18px;
-top:32px;
+top:22px;
 text-decoration:none;
 color:#000;
 font-size:22px;
@@ -141,7 +141,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 gap:18px;
-margin-top:8px;
+margin-top:10px;
 }
 
 /* BOX */
@@ -192,7 +192,7 @@ object-fit:cover;
 100%{transform:translateX(0%);}
 }
 
-/* FEATURED PRODUCT */
+/* FEATURED BLOCK */
 .featured{
 width:88vw;
 max-width:340px;
@@ -204,7 +204,7 @@ color:#fff;
 }
 
 .drop{
-font-size:0.8rem;
+font-size:0.72rem;
 letter-spacing:2px;
 opacity:0.8;
 margin-bottom:10px;
@@ -214,31 +214,35 @@ margin-bottom:10px;
 width:100%;
 height:210px;
 object-fit:contain;
-margin-bottom:10px;
-}
-
-.featured h2{
-font-family:'Bebas Neue',sans-serif;
-font-size:2rem;
-letter-spacing:1px;
 margin-bottom:8px;
 }
 
-.price{
-font-size:1.1rem;
-font-weight:700;
-margin-bottom:14px;
+/* SMALLER NAME */
+.featured h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:1.45rem;
+letter-spacing:1px;
+margin-bottom:6px;
 }
 
+/* SMALLER PRICE */
+.price{
+font-size:0.95rem;
+font-weight:700;
+margin-bottom:12px;
+}
+
+/* SMALLER RECTANGLE BUTTON */
 .shop-btn{
-display:block;
-width:100%;
-padding:14px;
+display:inline-block;
+padding:10px 26px;
 background:#e10600;
 color:#fff;
 text-decoration:none;
-border-radius:12px;
+border-radius:6px;
+font-size:0.82rem;
 font-weight:700;
+letter-spacing:0.5px;
 }
 
 /* TRUST BAR */
@@ -251,26 +255,7 @@ color:#555;
 padding:0 12px;
 }
 
-/* DESKTOP */
 @media(min-width:768px){
-
-header{
-min-height:110px;
-}
-
-.logo{
-width:320px;
-max-width:420px;
-}
-
-.menu-btn{
-top:44px;
-}
-
-.cart-wrap{
-top:40px;
-}
-
 .square{
 width:360px;
 height:190px;
@@ -280,8 +265,9 @@ height:190px;
 font-size:4rem;
 }
 
-.featured{
-max-width:360px;
+.logo{
+height:38px;
+max-width:210px;
 }
 }
 </style>
@@ -296,6 +282,7 @@ max-width:360px;
 <span></span>
 </div>
 
+<!-- LOGO -->
 <img src="assets/logo.png" class="logo">
 
 <a href="cart.html" class="cart-wrap">
@@ -326,7 +313,7 @@ max-width:360px;
 </div>
 </div>
 
-<!-- FEATURED DROP -->
+<!-- FEATURED -->
 <div class="featured">
 <div class="drop">FEATURED DROP</div>
 <img src="assets/products/ferrari_polo_2025.jpg">
@@ -347,9 +334,7 @@ document.querySelector(".menu-btn").classList.toggle("active");
 document.getElementById("menu").classList.toggle("active");
 }
 
-/* CART COUNT */
 function updateCartCount(){
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
@@ -370,7 +355,7 @@ badge.classList.remove("hide");
 
 updateCartCount();
 
-/* CLICKABLE SLIDESHOW */
+/* CLICKABLE SLIDER */
 let slider = document.getElementById("sliderTrack");
 let current = 0;
 const totalSlides = 3;
