@@ -25,18 +25,18 @@ color:#111;
 header{
 position:relative;
 width:100%;
-padding:18px;
+padding:14px 18px;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:72px;
+min-height:96px;
 }
 
-/* LOGO CENTER */
+/* BIG LOGO */
 .logo{
-height:42px;
-width:auto;
-max-width:170px;
+width:260px;
+max-width:68vw;
+height:auto;
 display:block;
 object-fit:contain;
 }
@@ -45,7 +45,7 @@ object-fit:contain;
 .menu-btn{
 position:absolute;
 left:18px;
-top:24px;
+top:36px;
 width:30px;
 height:22px;
 cursor:pointer;
@@ -82,7 +82,7 @@ background:#fff;
 .cart-wrap{
 position:absolute;
 right:18px;
-top:22px;
+top:32px;
 text-decoration:none;
 color:#000;
 font-size:22px;
@@ -141,7 +141,7 @@ display:flex;
 flex-direction:column;
 align-items:center;
 gap:18px;
-margin-top:10px;
+margin-top:8px;
 }
 
 /* BOX */
@@ -192,7 +192,7 @@ object-fit:cover;
 100%{transform:translateX(0%);}
 }
 
-/* FEATURED */
+/* FEATURED PRODUCT */
 .featured{
 width:88vw;
 max-width:340px;
@@ -241,7 +241,7 @@ border-radius:12px;
 font-weight:700;
 }
 
-/* TRUST */
+/* TRUST BAR */
 .trust{
 margin:26px 0 28px;
 text-align:center;
@@ -251,17 +251,37 @@ color:#555;
 padding:0 12px;
 }
 
+/* DESKTOP */
 @media(min-width:768px){
-.logo{
-height:48px;
-max-width:200px;
+
+header{
+min-height:110px;
 }
+
+.logo{
+width:320px;
+max-width:420px;
+}
+
+.menu-btn{
+top:44px;
+}
+
+.cart-wrap{
+top:40px;
+}
+
 .square{
 width:360px;
 height:190px;
 }
+
 .collections{
 font-size:4rem;
+}
+
+.featured{
+max-width:360px;
 }
 }
 </style>
@@ -276,7 +296,6 @@ font-size:4rem;
 <span></span>
 </div>
 
-<!-- ONLY LOGO IN CENTER -->
 <img src="assets/logo.png" class="logo">
 
 <a href="cart.html" class="cart-wrap">
@@ -293,10 +312,12 @@ font-size:4rem;
 
 <div class="main">
 
+<!-- COLLECTIONS -->
 <div class="square">
 <a href="collections.html" class="collections">collections</a>
 </div>
 
+<!-- SLIDESHOW -->
 <div class="square">
 <div class="slider-track" id="sliderTrack">
 <img src="img1.jpg">
@@ -305,6 +326,7 @@ font-size:4rem;
 </div>
 </div>
 
+<!-- FEATURED DROP -->
 <div class="featured">
 <div class="drop">FEATURED DROP</div>
 <img src="assets/products/ferrari_polo_2025.jpg">
@@ -325,7 +347,9 @@ document.querySelector(".menu-btn").classList.toggle("active");
 document.getElementById("menu").classList.toggle("active");
 }
 
+/* CART COUNT */
 function updateCartCount(){
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
@@ -334,6 +358,7 @@ total += item.qty;
 });
 
 const badge = document.getElementById("cartCount");
+
 badge.innerText = total;
 
 if(total === 0){
@@ -345,6 +370,7 @@ badge.classList.remove("hide");
 
 updateCartCount();
 
+/* CLICKABLE SLIDESHOW */
 let slider = document.getElementById("sliderTrack");
 let current = 0;
 const totalSlides = 3;
