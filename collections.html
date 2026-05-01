@@ -38,7 +38,7 @@ header{
     font-size:16px;
 }
 
-/* PREMIUM CART */
+/* CART */
 .cart-wrap{
     position:absolute;
     right:16px;
@@ -81,6 +81,7 @@ header{
 .item{
     width:92vw;
     max-width:340px;
+    position:relative;
 }
 
 .item img{
@@ -89,7 +90,26 @@ header{
     object-fit:contain;
     background:#fff;
     display:block;
-    cursor:pointer;
+}
+
+/* COMING SOON STYLE */
+.soon img{
+    filter:blur(3px) brightness(0.8);
+}
+
+.badge{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#000;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:30px;
+    font-size:0.9rem;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 </style>
 </head>
@@ -109,25 +129,23 @@ header{
 
 <div class="grid">
 
-    <!-- PRODUCT 1 -->
+    <!-- PRODUCT 1 READY -->
     <div class="item">
         <a href="product.html?id=polo">
             <img src="assets/products/ferrari_polo_2025.jpg">
         </a>
     </div>
 
-    <!-- PRODUCT 2 -->
-    <div class="item">
-        <a href="product.html?id=monza">
-            <img src="assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg">
-        </a>
+    <!-- PRODUCT 2 COMING SOON -->
+    <div class="item soon">
+        <img src="assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg">
+        <div class="badge">Coming Soon</div>
     </div>
 
-    <!-- PRODUCT 3 -->
-    <div class="item">
-        <a href="product.html?id=swartwell">
-            <img src="assets/products/ferrari_oversized.jpg">
-        </a>
+    <!-- PRODUCT 3 COMING SOON -->
+    <div class="item soon">
+        <img src="assets/products/ferrari_oversized.jpg">
+        <div class="badge">Coming Soon</div>
     </div>
 
 </div>
