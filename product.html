@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rev per min.®</title>
+<title>Product | rev per min.®</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 
@@ -15,78 +15,45 @@ box-sizing:border-box;
 }
 
 body{
-background:#fff;
 font-family:'Montserrat',sans-serif;
-overflow-x:hidden;
+background:#fff;
 color:#111;
 }
 
 /* HEADER */
 header{
 position:relative;
-width:100%;
 padding:18px;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:76px;
+border-bottom:1px solid #eee;
+min-height:74px;
 }
 
-/* LOGO */
-.logo{
-width:185px;
-max-width:62vw;
-height:auto;
-display:block;
-object-fit:contain;
-margin:0 auto;
-}
-
-/* MENU */
-.menu-btn{
+.back{
 position:absolute;
 left:18px;
-top:26px;
-width:30px;
-height:22px;
-cursor:pointer;
-z-index:1001;
+top:24px;
+text-decoration:none;
+color:#111;
+font-size:18px;
+font-weight:700;
 }
 
-.menu-btn span{
-position:absolute;
-width:100%;
-height:3px;
-background:#000;
-transition:0.3s ease;
-left:0;
+.logo{
+width:160px;
+max-width:58vw;
+height:auto;
 }
 
-.menu-btn span:nth-child(1){top:6px;}
-.menu-btn span:nth-child(2){top:14px;}
-
-.menu-btn.active span:nth-child(1){
-transform:rotate(45deg);
-top:10px;
-}
-
-.menu-btn.active span:nth-child(2){
-transform:rotate(-45deg);
-top:10px;
-}
-
-.menu-btn.active span{
-background:#fff;
-}
-
-/* CART */
 .cart-wrap{
 position:absolute;
 right:18px;
-top:24px;
+top:22px;
 text-decoration:none;
-color:#000;
 font-size:22px;
+color:#111;
 }
 
 .cart-count{
@@ -110,186 +77,141 @@ font-weight:700;
 display:none;
 }
 
-/* SIDE MENU */
-.side-menu{
-position:fixed;
-top:0;
-left:-260px;
-width:240px;
-height:100vh;
-background:#0b1b3a;
-padding:80px 20px;
-transition:0.3s;
-z-index:1000;
-}
-
-.side-menu a{
-display:block;
-color:#fff;
-text-decoration:none;
-font-size:1.2rem;
-margin-bottom:20px;
-}
-
-.side-menu.active{
-left:0;
-}
-
 /* MAIN */
-.main{
-width:100%;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:18px;
-margin-top:10px;
+.container{
+max-width:420px;
+margin:auto;
+padding:22px;
 }
 
-/* BOXES */
-.square{
-width:88vw;
-max-width:340px;
-height:170px;
-background:#000;
-border-radius:16px;
+/* IMAGE SLIDER */
+.gallery{
 overflow:hidden;
+border-radius:16px;
+}
+
+.slides{
+display:flex;
+transition:0.35s ease;
+}
+
+.slides img{
+width:100%;
+flex-shrink:0;
+height:340px;
+object-fit:contain;
+background:#fff;
+}
+
+.dots{
 display:flex;
 justify-content:center;
-align-items:center;
+gap:8px;
+margin-top:12px;
 }
 
-/* EXPLORE */
-.collections{
-color:#fff;
-font-family:'Bebas Neue',sans-serif;
-font-size:3.4rem;
-text-decoration:none;
-letter-spacing:1px;
-}
-
-/* SLIDER */
-.slider-track{
-width:300%;
-height:100%;
-display:flex;
-animation:slide 9s infinite;
+.dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:#ccc;
 cursor:pointer;
 }
 
-.slider-track img{
-width:100%;
-height:100%;
-flex-shrink:0;
-object-fit:cover;
-}
-
-@keyframes slide{
-0%{transform:translateX(0%);}
-30%{transform:translateX(0%);}
-35%{transform:translateX(-100%);}
-65%{transform:translateX(-100%);}
-70%{transform:translateX(-200%);}
-95%{transform:translateX(-200%);}
-100%{transform:translateX(0%);}
-}
-
-/* FEATURED PRODUCT */
-.featured{
-width:88vw;
-max-width:340px;
+.dot.active{
 background:#111;
-border-radius:18px;
-padding:16px;
+}
+
+/* PRODUCT */
+h1{
+font-size:1.08rem;
+line-height:1.4;
+margin-top:20px;
 text-align:center;
-color:#fff;
-}
-
-.drop{
-font-size:0.72rem;
-letter-spacing:2px;
-opacity:0.8;
-margin-bottom:10px;
-}
-
-.featured img{
-width:100%;
-height:210px;
-object-fit:contain;
-margin-bottom:8px;
-}
-
-/* FIXED PRODUCT TITLE */
-.featured h2{
-font-family:'Montserrat',sans-serif;
-font-size:0.98rem;
-font-weight:700;
-line-height:1.35;
-letter-spacing:0.3px;
-text-align:center;
-margin:8px auto 10px;
-max-width:92%;
-color:#fff;
 }
 
 .price{
-font-size:1rem;
+font-size:1.35rem;
 font-weight:700;
-margin-bottom:12px;
-}
-
-.shop-btn{
-display:inline-block;
-padding:10px 26px;
-background:#e10600;
-color:#fff;
-text-decoration:none;
-border-radius:6px;
-font-size:0.82rem;
-font-weight:700;
-letter-spacing:0.5px;
-}
-
-/* TRUST */
-.trust{
-margin:26px 0 28px;
+margin-top:10px;
 text-align:center;
-font-size:0.82rem;
-letter-spacing:0.5px;
-color:#555;
-padding:0 12px;
+}
+
+.desc{
+font-size:0.92rem;
+line-height:1.6;
+color:#666;
+margin-top:12px;
+text-align:center;
+}
+
+/* FIT */
+.label{
+margin-top:24px;
+font-size:0.9rem;
+font-weight:700;
+}
+
+.fit-options{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.fit-btn{
+flex:1;
+padding:12px;
+border:1px solid #ddd;
+background:#fff;
+border-radius:10px;
+font-size:0.9rem;
+cursor:pointer;
+}
+
+.fit-btn.active{
+background:#111;
+color:#fff;
+border-color:#111;
+}
+
+.fit-desc{
+font-size:0.85rem;
+color:#666;
+line-height:1.5;
+margin-top:12px;
+min-height:40px;
+}
+
+/* BUTTON */
+.cart-btn{
+width:100%;
+padding:15px;
+margin-top:20px;
+border:none;
+background:#111;
+color:#fff;
+font-size:1rem;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+}
+
+.cart-btn.added{
+background:#fff;
+color:#111;
+border:1px solid #111;
+}
+
+.cart-btn.soon{
+background:#eee;
+color:#777;
+cursor:not-allowed;
 }
 
 /* MOBILE */
 @media(max-width:480px){
-
-.featured h2{
-font-size:0.92rem;
-line-height:1.32;
-max-width:94%;
-padding:0 6px;
-}
-
-}
-
-/* DESKTOP */
-@media(min-width:768px){
-
-header{
-min-height:86px;
-}
-
-.logo{
-width:205px;
-max-width:260px;
-}
-
-.square{
-width:360px;
-height:190px;
-}
-
-.collections{
-font-size:4rem;
+.slides img{
+height:300px;
 }
 }
 </style>
@@ -298,11 +220,7 @@ font-size:4rem;
 <body>
 
 <header>
-
-<div class="menu-btn" onclick="toggleMenu()">
-<span></span>
-<span></span>
-</div>
+<a href="collections.html" class="back">←</a>
 
 <img src="assets/logo.png" class="logo">
 
@@ -310,60 +228,193 @@ font-size:4rem;
 🛒
 <span class="cart-count hide" id="cartCount">0</span>
 </a>
-
 </header>
 
-<div class="side-menu" id="menu">
-<a href="index.html">Home</a>
-<a href="collections.html">Explore.</a>
+<div class="container">
+
+<div class="gallery">
+<div class="slides" id="slides"></div>
 </div>
 
-<div class="main">
+<div class="dots" id="dots"></div>
 
-<div class="square">
-<a href="collections.html" class="collections">explore.</a>
+<h1 id="name"></h1>
+<div class="price" id="price"></div>
+<div class="desc" id="desc"></div>
+
+<div class="label">Choose Fit</div>
+
+<div class="fit-options" id="fitWrap">
+<button class="fit-btn" onclick="pickFit(this,'Normal Fit')">Normal Fit</button>
+<button class="fit-btn" onclick="pickFit(this,'Oversized Fit')">Oversized Fit</button>
 </div>
 
-<div class="square">
-<div class="slider-track" id="sliderTrack">
-<img src="img1.jpg">
-<img src="img2.jpg">
-<img src="img3.jpg">
-</div>
-</div>
+<div class="fit-desc" id="fitDesc">Select a fit option above.</div>
 
-<div class="featured">
-<div class="drop">FEATURED DROP</div>
-<img src="assets/products/ferrari_polo_2025.jpg">
-<h2>Ferrari 2025 Drivers Sublimation Jersey</h2>
-<div class="price">₹469</div>
-<a href="product.html?id=polo" class="shop-btn">SHOP NOW</a>
-</div>
+<button class="cart-btn" id="cartBtn" onclick="addToCart()">Add to Cart</button>
 
-</div>
-
-<div class="trust">
-Fast shipping • Limited stock
 </div>
 
 <script>
-function toggleMenu(){
-document.querySelector(".menu-btn").classList.toggle("active");
-document.getElementById("menu").classList.toggle("active");
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id") || "polo";
+
+const products = {
+
+polo:{
+name:"Ferrari 2025 Drivers Sublimation Jersey",
+price:469,
+desc:"Race inspired jersey built for everyday wear and motorsport energy.",
+images:[
+"assets/products/ferrari-front.jpg",
+"assets/products/ferrari-back.jpg"
+],
+live:true
+},
+
+monza:{
+name:"Ferrari Monza Edition",
+price:0,
+desc:"Launching soon.",
+images:[
+"assets/products/ferrari-puma-monza-2025-special-edition-t-shirt.jpg"
+],
+live:false
+},
+
+swartwell:{
+name:"Ferrari Swartwell Oversized Tee",
+price:0,
+desc:"Launching soon.",
+images:[
+"assets/products/ferrari_oversized.jpg"
+],
+live:false
 }
 
+};
+
+const product = products[id];
+
+document.getElementById("name").innerText = product.name;
+document.getElementById("desc").innerText = product.desc;
+document.getElementById("price").innerText = product.live ? "₹" + product.price : "Coming Soon";
+
+const slides = document.getElementById("slides");
+const dots = document.getElementById("dots");
+
+product.images.forEach((img,i)=>{
+slides.innerHTML += `<img src="${img}">`;
+dots.innerHTML += `<div class="dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`;
+});
+
+let current = 0;
+
+function goSlide(i){
+current = i;
+slides.style.transform = `translateX(-${i*100}%)`;
+document.querySelectorAll(".dot").forEach((d,index)=>{
+d.classList.toggle("active",index===i);
+});
+}
+
+/* Swipe */
+let startX = 0;
+
+slides.addEventListener("touchstart",e=>{
+startX = e.touches[0].clientX;
+});
+
+slides.addEventListener("touchend",e=>{
+let endX = e.changedTouches[0].clientX;
+if(endX < startX - 40 && current < product.images.length-1){
+goSlide(current+1);
+}
+if(endX > startX + 40 && current > 0){
+goSlide(current-1);
+}
+});
+
+/* Coming soon */
+if(!product.live){
+document.getElementById("fitWrap").style.display="none";
+document.getElementById("fitDesc").style.display="none";
+
+let btn = document.getElementById("cartBtn");
+btn.innerText = "Coming Soon";
+btn.classList.add("soon");
+btn.onclick = null;
+}
+
+/* FIT */
+let selectedFit = "";
+
+function pickFit(el,fit){
+
+document.querySelectorAll(".fit-btn").forEach(btn=>{
+btn.classList.remove("active");
+});
+
+el.classList.add("active");
+selectedFit = fit;
+
+document.getElementById("fitDesc").innerText =
+fit==="Normal Fit"
+? "Regular clean fit with sharper body shape."
+: "Relaxed oversized fit with streetwear comfort.";
+
+let btn = document.getElementById("cartBtn");
+btn.innerText = "Add to Cart";
+btn.classList.remove("added");
+}
+
+/* CART */
+function addToCart(){
+
+if(selectedFit===""){
+alert("Choose a fit first");
+return;
+}
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let found = cart.find(item =>
+item.name===product.name &&
+item.fit===selectedFit
+);
+
+if(found){
+found.qty += 1;
+}else{
+cart.push({
+name:product.name,
+price:product.price,
+fit:selectedFit,
+qty:1,
+img:product.images[0]
+});
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+let btn = document.getElementById("cartBtn");
+btn.innerText = "Added";
+btn.classList.add("added");
+
+updateCartCount();
+}
+
+/* CART COUNT */
 function updateCartCount(){
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
-cart.forEach(item=>{
-total += item.qty;
-});
+cart.forEach(item=> total += item.qty);
 
-const badge = document.getElementById("cartCount");
+let badge = document.getElementById("cartCount");
 badge.innerText = total;
 
-if(total === 0){
+if(total===0){
 badge.classList.add("hide");
 }else{
 badge.classList.remove("hide");
@@ -371,15 +422,6 @@ badge.classList.remove("hide");
 }
 
 updateCartCount();
-
-let slider = document.getElementById("sliderTrack");
-let current = 0;
-const totalSlides = 3;
-
-slider.addEventListener("click", () => {
-current = (current + 1) % totalSlides;
-slider.style.transform = `translateX(-${current * 100}%)`;
-});
 </script>
 
 </body>
