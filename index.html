@@ -1,179 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rev per min.®</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<!-- REPLACE ONLY THE SLIDER CSS + SCRIPT PARTS -->
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-background:#fff;
-font-family:'Montserrat',sans-serif;
-overflow-x:hidden;
-color:#111;
-}
-
-/* HEADER */
-header{
-position:relative;
-width:100%;
-padding:18px;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:76px;
-}
-
-/* LOGO */
-.logo{
-width:185px;
-max-width:62vw;
-height:auto;
-display:block;
-object-fit:contain;
-margin:0 auto;
-}
-
-/* MENU */
-.menu-btn{
-position:absolute;
-left:18px;
-top:26px;
-width:30px;
-height:22px;
-cursor:pointer;
-z-index:1001;
-}
-
-.menu-btn span{
-position:absolute;
-width:100%;
-height:3px;
-background:#000;
-transition:0.3s ease;
-left:0;
-}
-
-.menu-btn span:nth-child(1){top:6px;}
-.menu-btn span:nth-child(2){top:14px;}
-
-.menu-btn.active span:nth-child(1){
-transform:rotate(45deg);
-top:10px;
-}
-
-.menu-btn.active span:nth-child(2){
-transform:rotate(-45deg);
-top:10px;
-}
-
-.menu-btn.active span{
-background:#fff;
-}
-
-/* CART */
-.cart-wrap{
-position:absolute;
-right:18px;
-top:24px;
-text-decoration:none;
-color:#000;
-font-size:22px;
-}
-
-.cart-count{
-position:absolute;
-top:-6px;
-right:-10px;
-background:#000;
-color:#fff;
-font-size:10px;
-min-width:18px;
-height:18px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:0 4px;
-font-weight:700;
-}
-
-.cart-count.hide{
-display:none;
-}
-
-/* SIDE MENU */
-.side-menu{
-position:fixed;
-top:0;
-left:-260px;
-width:240px;
-height:100vh;
-background:#0b1b3a;
-padding:80px 20px;
-transition:0.3s;
-z-index:1000;
-}
-
-.side-menu a{
-display:block;
-color:#fff;
-text-decoration:none;
-font-size:1.2rem;
-margin-bottom:20px;
-}
-
-.side-menu.active{
-left:0;
-}
-
-/* MAIN */
-.main{
-width:100%;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:18px;
-margin-top:10px;
-}
-
-/* BOXES */
-.square{
-width:88vw;
-max-width:340px;
-height:170px;
-background:#000;
-border-radius:16px;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-/* EXPLORE */
-.collections{
-color:#fff;
-font-family:'Bebas Neue',sans-serif;
-font-size:3.4rem;
-text-decoration:none;
-letter-spacing:1px;
-}
-
-/* SLIDER */
+/* NEW PREMIUM SLIDER */
 .slider-track{
 width:300%;
 height:100%;
 display:flex;
-animation:slide 9s infinite;
 cursor:pointer;
+transition:transform 0.8s ease;
 }
 
 .slider-track img{
@@ -182,168 +16,15 @@ height:100%;
 flex-shrink:0;
 object-fit:cover;
 }
-
-@keyframes slide{
-0%{transform:translateX(0%);}
-30%{transform:translateX(0%);}
-35%{transform:translateX(-100%);}
-65%{transform:translateX(-100%);}
-70%{transform:translateX(-200%);}
-95%{transform:translateX(-200%);}
-100%{transform:translateX(0%);}
-}
-
-/* FEATURED PRODUCT */
-.featured{
-width:88vw;
-max-width:340px;
-background:#111;
-border-radius:18px;
-padding:16px;
-text-align:center;
-color:#fff;
-}
-
-.drop{
-font-size:0.72rem;
-letter-spacing:2px;
-opacity:0.8;
-margin-bottom:10px;
-}
-
-.featured img{
-width:100%;
-height:210px;
-object-fit:contain;
-margin-bottom:8px;
-}
-
-/* FIXED PRODUCT TITLE */
-.featured h2{
-font-family:'Montserrat',sans-serif;
-font-size:0.98rem;
-font-weight:700;
-line-height:1.35;
-letter-spacing:0.3px;
-text-align:center;
-margin:8px auto 10px;
-max-width:92%;
-color:#fff;
-}
-
-.price{
-font-size:1rem;
-font-weight:700;
-margin-bottom:12px;
-}
-
-.shop-btn{
-display:inline-block;
-padding:10px 26px;
-background:#e10600;
-color:#fff;
-text-decoration:none;
-border-radius:6px;
-font-size:0.82rem;
-font-weight:700;
-letter-spacing:0.5px;
-}
-
-/* TRUST */
-.trust{
-margin:26px 0 28px;
-text-align:center;
-font-size:0.82rem;
-letter-spacing:0.5px;
-color:#555;
-padding:0 12px;
-}
-
-/* MOBILE */
-@media(max-width:480px){
-
-.featured h2{
-font-size:0.92rem;
-line-height:1.32;
-max-width:94%;
-padding:0 6px;
-}
-
-}
-
-/* DESKTOP */
-@media(min-width:768px){
-
-header{
-min-height:86px;
-}
-
-.logo{
-width:205px;
-max-width:260px;
-}
-
-.square{
-width:360px;
-height:190px;
-}
-
-.collections{
-font-size:4rem;
-}
-}
 </style>
-</head>
 
-<body>
-
-<header>
-
-<div class="menu-btn" onclick="toggleMenu()">
-<span></span>
-<span></span>
-</div>
-
-<img src="assets/logo.png" class="logo">
-
-<a href="cart.html" class="cart-wrap">
-🛒
-<span class="cart-count hide" id="cartCount">0</span>
-</a>
-
-</header>
-
-<div class="side-menu" id="menu">
-<a href="index.html">Home</a>
-<a href="collections.html">Explore.</a>
-</div>
-
-<div class="main">
-
-<div class="square">
-<a href="collections.html" class="collections">explore.</a>
-</div>
-
+<!-- KEEP HTML SAME -->
 <div class="square">
 <div class="slider-track" id="sliderTrack">
 <img src="img1.jpg">
 <img src="img2.jpg">
 <img src="img3.jpg">
 </div>
-</div>
-
-<div class="featured">
-<div class="drop">FEATURED DROP</div>
-<img src="assets/products/ferrari_polo_2025.jpg">
-<h2>Ferrari 2025 Drivers Sublimation Jersey</h2>
-<div class="price">₹469</div>
-<a href="product.html?id=polo" class="shop-btn">SHOP NOW</a>
-</div>
-
-</div>
-
-<div class="trust">
-Fast shipping • Limited stock
 </div>
 
 <script>
@@ -363,7 +44,7 @@ total += item.qty;
 const badge = document.getElementById("cartCount");
 badge.innerText = total;
 
-if(total === 0){
+if(total===0){
 badge.classList.add("hide");
 }else{
 badge.classList.remove("hide");
@@ -372,15 +53,48 @@ badge.classList.remove("hide");
 
 updateCartCount();
 
-let slider = document.getElementById("sliderTrack");
-let current = 0;
-const totalSlides = 3;
+/* PREMIUM HALF SLIDE SYSTEM */
+const slider = document.getElementById("sliderTrack");
 
-slider.addEventListener("click", () => {
-current = (current + 1) % totalSlides;
-slider.style.transform = `translateX(-${current * 100}%)`;
+/*
+0 = full img1
+1 = half img2
+2 = full img2
+3 = half img3
+4 = full img3
+5 = half img1 return
+*/
+
+const positions = [
+0,
+-50,
+-100,
+-150,
+-200,
+-250
+];
+
+let current = 0;
+
+function moveSlider(){
+slider.style.transform = `translateX(${positions[current]}%)`;
+}
+
+function nextSlide(){
+current++;
+
+if(current >= positions.length){
+current = 0;
+}
+
+moveSlider();
+}
+
+/* auto movement */
+setInterval(nextSlide,2200);
+
+/* manual click */
+slider.addEventListener("click",()=>{
+nextSlide();
 });
 </script>
-
-</body>
-</html>
