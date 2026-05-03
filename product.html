@@ -71,10 +71,7 @@ margin:auto;
 padding:22px;
 }
 
-.gallery{
-overflow:hidden;
-border-radius:16px;
-}
+.gallery{overflow:hidden;border-radius:16px;}
 
 .slides{
 display:flex;
@@ -135,6 +132,7 @@ font-size:0.9rem;
 font-weight:700;
 }
 
+/* SIZE OPTIONS */
 .fit-options{
 display:flex;
 gap:10px;
@@ -148,6 +146,8 @@ border:1px solid #ddd;
 background:#fff;
 border-radius:12px;
 cursor:pointer;
+font-weight:700;
+text-align:center;
 }
 
 .fit-btn.active{
@@ -156,9 +156,11 @@ color:#fff;
 border-color:#111;
 }
 
+/* ONLY S & M disabled */
 .fit-btn.disabled{
-opacity:0.3;
+opacity:0.35;
 pointer-events:none;
+cursor:not-allowed;
 }
 
 .fit-desc{
@@ -226,19 +228,14 @@ color:#fff;
 
 <div class="fit-options" id="fitWrap">
 
-<button class="fit-btn" onclick="pickFit(this,'Standard Fit')">
-<div class="fit-title">Standard Fit ⭐</div>
-<div class="fit-sub">Recommended</div>
-</button>
+<button class="fit-btn disabled">S</button>
+<button class="fit-btn disabled">M</button>
 
-<button class="fit-btn" onclick="pickFit(this,'Slim Fit')">
-<div class="fit-title">Slim Fit</div>
-<div class="fit-sub">Closer body fit</div>
-</button>
+<button class="fit-btn" onclick="pickFit(this,'L')">L</button>
+<button class="fit-btn" onclick="pickFit(this,'XL')">XL</button>
 
 </div>
 
-<!-- ✅ FIXED SIZE MESSAGE -->
 <div class="fit-desc" id="fitDesc">
 ⚠️ This drop runs one size larger than standard sizing.<br>
 If you usually wear M, we recommend selecting L.<br>
@@ -250,6 +247,7 @@ L and XL are relaxed fit for this collection.
 </div>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id") || "polo";
 
@@ -296,6 +294,7 @@ product.live ? "₹"+product.price : "Coming Soon";
 
 document.getElementById("desc").innerText = product.desc;
 
+/* SLIDER */
 const slides = document.getElementById("slides");
 const dots = document.getElementById("dots");
 
@@ -334,20 +333,20 @@ goSlide(current-1);
 }
 });
 
-/* FIT */
+/* FIT SELECT */
 let selectedFit = "";
 
 function pickFit(el,fit){
 
-document.querySelectorAll(".fit-btn").forEach(btn=>{
-btn.classList.remove("active");
+document.querySelectorAll(".fit-btn").forEach(b=>{
+b.classList.remove("active");
 });
 
 el.classList.add("active");
 selectedFit = fit;
 }
 
-/* CART */
+/* ADD TO CART */
 function addToCart(){
 
 if(selectedFit===""){
@@ -357,13 +356,13 @@ return;
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let found = cart.find(item =>
-item.name===product.name &&
-item.fit===selectedFit
+let found = cart.find(i =>
+i.name === product.name &&
+i.fit === selectedFit
 );
 
 if(found){
-found.qty += 1;
+found.qty++;
 }else{
 cart.push({
 name:product.name,
@@ -383,27 +382,46 @@ btn.classList.add("added");
 updateCartCount();
 }
 
+/* COMING SOON RESTORED EXACT LOGIC */
+if(!product.live){
+
+document.getElementById("fitWrap").style.display="none";
+document.getElementById("fitDesc").style.display="none";
+document.getElementById("fitLabel").style.display="none";
+
+let btn = document.getElementById("cartBtn");
+btn.innerText = "Send Enquiry";
+btn.classList.add("enquiry-btn");
+
+btn.onclick = function(){
+
+let msg = `Hello, I'm interested in ${product.name}. Please let me know when it becomes available.`;
+
+window.open(
+"https://wa.me/919961365304?text=" + encodeURIComponent(msg),
+"_blank"
+);
+
+};
+
+}
+
 /* CART COUNT */
 function updateCartCount(){
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
-cart.forEach(item=>{
-total += item.qty;
-});
+cart.forEach(i=>total+=i.qty);
 
 let badge = document.getElementById("cartCount");
 badge.innerText = total;
 
-if(total===0){
-badge.classList.add("hide");
-}else{
-badge.classList.remove("hide");
-}
+badge.classList.toggle("hide", total===0);
 }
 
 updateCartCount();
+
 </script>
 
 </body>
