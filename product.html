@@ -160,7 +160,7 @@ pointer-events:none;
 cursor:not-allowed;
 }
 
-/* SIZE NOTE (SIMPLE) */
+/* SIZE NOTE */
 .fit-desc{
 font-size:0.82rem;
 color:#666;
@@ -180,6 +180,7 @@ font-size:1rem;
 border-radius:12px;
 cursor:pointer;
 font-weight:700;
+transition:0.2s ease;
 }
 
 .cart-btn.added{
@@ -192,6 +193,7 @@ border:1px solid #111;
 background:#111;
 color:#fff;
 }
+
 </style>
 </head>
 
@@ -222,9 +224,8 @@ color:#fff;
 <div class="price" id="price"></div>
 <div class="desc" id="desc"></div>
 
-<div class="label" id="fitLabel">Choose Size</div>
+<div class="label" id="fitLabel">Choose Fit</div>
 
-<!-- SIZE -->
 <div class="fit-options" id="fitWrap">
 
 <button class="fit-btn disabled">S</button>
@@ -235,7 +236,6 @@ color:#fff;
 
 </div>
 
-<!-- SIMPLE NOTE -->
 <div class="fit-desc" id="fitDesc">
 We recommend choosing one size up from your usual fit.
 </div>
@@ -343,13 +343,13 @@ b.classList.remove("active");
 el.classList.add("active");
 selectedFit = fit;
 
-/* reset button */
+/* reset button state */
 let btn = document.getElementById("cartBtn");
 btn.innerText = "Add to Cart";
 btn.classList.remove("added");
 }
 
-/* CART */
+/* CART FIXED */
 function addToCart(){
 
 if(selectedFit===""){
@@ -381,6 +381,12 @@ localStorage.setItem("cart",JSON.stringify(cart));
 let btn = document.getElementById("cartBtn");
 btn.innerText = "Added";
 btn.classList.add("added");
+
+/* IMPORTANT FIX: ensures repeated clicks still give feedback */
+setTimeout(()=>{
+btn.innerText = "Add to Cart";
+btn.classList.remove("added");
+},700);
 
 updateCartCount();
 }
