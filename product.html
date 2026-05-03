@@ -100,9 +100,7 @@ background:#ccc;
 cursor:pointer;
 }
 
-.dot.active{
-background:#111;
-}
+.dot.active{background:#111;}
 
 h1{
 font-size:1.05rem;
@@ -132,7 +130,7 @@ font-size:0.9rem;
 font-weight:700;
 }
 
-/* SIZE OPTIONS */
+/* SIZE */
 .fit-options{
 display:flex;
 gap:10px;
@@ -148,31 +146,26 @@ border-radius:12px;
 cursor:pointer;
 font-weight:700;
 text-align:center;
-position:relative;
-transition:0.2s ease;
 }
 
 .fit-btn.active{
 background:#111;
 color:#fff;
 border-color:#111;
-transform:scale(1.03);
 }
 
-/* disabled sizes */
 .fit-btn.disabled{
 opacity:0.35;
 pointer-events:none;
 cursor:not-allowed;
 }
 
-/* SIZE NOTE */
+/* SIZE NOTE (SIMPLE) */
 .fit-desc{
 font-size:0.82rem;
 color:#666;
-margin-top:12px;
+margin-top:10px;
 line-height:1.5;
-min-height:42px;
 }
 
 /* BUTTON */
@@ -199,7 +192,6 @@ border:1px solid #111;
 background:#111;
 color:#fff;
 }
-
 </style>
 </head>
 
@@ -230,27 +222,22 @@ color:#fff;
 <div class="price" id="price"></div>
 <div class="desc" id="desc"></div>
 
-<div class="label" id="fitLabel">Choose Fit</div>
+<div class="label" id="fitLabel">Choose Size</div>
 
-<!-- SIZE SECTION -->
+<!-- SIZE -->
 <div class="fit-options" id="fitWrap">
 
 <button class="fit-btn disabled">S</button>
 <button class="fit-btn disabled">M</button>
 
-<button class="fit-btn" onclick="pickFit(this,'L')">
-L
-<div style="font-size:0.65rem;opacity:0.6;margin-top:4px;">Recommended</div>
-</button>
-
+<button class="fit-btn" onclick="pickFit(this,'L')">L</button>
 <button class="fit-btn" onclick="pickFit(this,'XL')">XL</button>
 
 </div>
 
+<!-- SIMPLE NOTE -->
 <div class="fit-desc" id="fitDesc">
-⚠️ This drop follows an oversized fit standard.<br>
-We recommend choosing one size up from your usual fit.<br>
-L is the most popular choice for this drop.
+We recommend choosing one size up from your usual fit.
 </div>
 
 <button class="cart-btn" id="cartBtn" onclick="addToCart()">Add to Cart</button>
@@ -325,7 +312,7 @@ dot.classList.toggle("active",index===i);
 });
 }
 
-/* swipe */
+/* SWIPE */
 let startX = 0;
 
 slides.addEventListener("touchstart",e=>{
@@ -344,7 +331,7 @@ goSlide(current-1);
 }
 });
 
-/* SIZE */
+/* FIT */
 let selectedFit = "";
 
 function pickFit(el,fit){
@@ -356,7 +343,7 @@ b.classList.remove("active");
 el.classList.add("active");
 selectedFit = fit;
 
-/* RESET CART BUTTON STATE */
+/* reset button */
 let btn = document.getElementById("cartBtn");
 btn.innerText = "Add to Cart";
 btn.classList.remove("added");
