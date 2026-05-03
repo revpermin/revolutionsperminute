@@ -24,24 +24,24 @@ padding:20px;
 h2{
 text-align:center;
 font-size:1.25rem;
-margin-bottom:20px;
+margin-bottom:22px;
 }
 
 /* CART ITEM */
 .item{
 display:flex;
 gap:14px;
-padding:14px 0;
+padding:16px 0;
 border-bottom:1px solid #eee;
-align-items:center;
+align-items:flex-start;
 }
 
 .item img{
-width:72px;
-height:72px;
+width:74px;
+height:74px;
 object-fit:contain;
-border-radius:10px;
 background:#fff;
+border-radius:10px;
 flex-shrink:0;
 }
 
@@ -53,13 +53,51 @@ flex:1;
 font-size:0.92rem;
 font-weight:700;
 line-height:1.4;
-margin-bottom:4px;
+margin-bottom:5px;
 }
 
 .meta{
 font-size:0.82rem;
 color:#666;
-line-height:1.5;
+margin-bottom:8px;
+}
+
+/* QTY */
+.qty-row{
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:8px;
+}
+
+.qty-btn{
+width:28px;
+height:28px;
+border:1px solid #ddd;
+background:#fff;
+font-size:16px;
+cursor:pointer;
+border-radius:6px;
+}
+
+.qty-num{
+min-width:20px;
+text-align:center;
+font-size:0.92rem;
+font-weight:700;
+}
+
+.remove{
+font-size:0.78rem;
+color:#777;
+cursor:pointer;
+text-decoration:underline;
+}
+
+.price{
+font-size:0.88rem;
+font-weight:700;
+margin-top:6px;
 }
 
 /* NOTE */
@@ -69,18 +107,18 @@ font-size:0.78rem;
 color:#666;
 text-align:center;
 line-height:1.5;
-padding:0 8px;
+padding:0 10px;
 }
 
 /* TOTAL */
 .total{
 text-align:center;
 margin-top:18px;
-font-size:1.1rem;
+font-size:1.12rem;
 font-weight:700;
 }
 
-/* BUTTON */
+/* CHECKOUT */
 button{
 width:100%;
 padding:14px;
@@ -97,8 +135,8 @@ cursor:pointer;
 /* EMPTY */
 .empty{
 text-align:center;
-color:#666;
 margin-top:40px;
+color:#666;
 font-size:0.95rem;
 }
 </style>
@@ -110,30 +148,43 @@ font-size:0.95rem;
 
 <div id="cart"></div>
 
-<div class="note">
+<div class="note" id="note">
 Final payable amount may vary slightly based on delivery location.
 </div>
 
 <div class="total" id="total"></div>
 
-<button onclick="checkout()">Proceed to WhatsApp</button>
+<button id="checkoutBtn" onclick="checkout()">Proceed to WhatsApp</button>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+function renderCart(){
+
 let container = document.getElementById("cart");
-let total = 0;
+let totalBox = document.getElementById("total");
+let note = document.getElementById("note");
+let checkoutBtn = document.getElementById("checkoutBtn");
+
+container.innerHTML = "";
 
 if(cart.length === 0){
 container.innerHTML = "<div class='empty'>Your cart is empty</div>";
-document.querySelector(".note").style.display = "none";
-document.getElementById("total").style.display = "none";
-document.querySelector("button").style.display = "none";
+totalBox.innerText = "";
+note.style.display = "none";
+checkoutBtn.style.display = "none";
+return;
 }
 
-cart.forEach(item => {
+note.style.display = "block";
+checkoutBtn.style.display = "block";
 
-total += item.price * item.qty;
+let total = 0;
+
+cart.forEach((item,index)=>{
+
+let subtotal = item.price * item.qty;
+total += subtotal;
 
 let image = item.img ? item.img : "assets/products/ferrari-front.jpg";
 
@@ -143,32 +194,75 @@ container.innerHTML += `
 <img src="${image}" alt="product">
 
 <div class="info">
+
 <div class="name">${item.name}</div>
+
 <div class="meta">Fit: ${item.fit}</div>
-<div class="meta">Qty: ${item.qty}</div>
-<div class="meta">₹${item.price}</div>
+
+<div class="qty-row">
+<button class="qty-btn" onclick="changeQty(${index},-1)">−</button>
+<div class="qty-num">${item.qty}</div>
+<button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+</div>
+
+<div class="remove" onclick="removeItem(${index})">Remove</div>
+
+<div class="price">₹${subtotal}</div>
+
 </div>
 
 </div>
 `;
 });
 
-document.getElementById("total").innerText = "Total: ₹" + total;
+totalBox.innerText = "Total: ₹" + total;
+}
 
+/* CHANGE QTY */
+function changeQty(index,change){
+
+cart[index].qty += change;
+
+if(cart[index].qty <= 0){
+cart.splice(index,1);
+}
+
+saveCart();
+}
+
+/* REMOVE */
+function removeItem(index){
+cart.splice(index,1);
+saveCart();
+}
+
+/* SAVE */
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
+renderCart();
+}
+
+/* CHECKOUT */
 function checkout(){
 
-let phone = "919961365304";
-
+let total = 0;
 let message = "Hello, I would like to place an order:%0A%0A";
 
-cart.forEach(item => {
-message += `• ${item.name}%0AFit: ${item.fit}%0AQty: ${item.qty}%0APrice: ₹${item.price}%0A%0A`;
+cart.forEach(item=>{
+
+let subtotal = item.price * item.qty;
+total += subtotal;
+
+message += `• ${item.name}%0AFit: ${item.fit}%0AQty: ${item.qty}%0AAmount: ₹${subtotal}%0A%0A`;
+
 });
 
 message += `Total: ₹${total}`;
 
-window.open(`https://wa.me/${phone}?text=${message}`,"_blank");
+window.open("https://wa.me/919961365304?text=" + message,"_blank");
 }
+
+renderCart();
 </script>
 
 </body>
