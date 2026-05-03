@@ -8,155 +8,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Montserrat',sans-serif;background:#fff;color:#111;}
-
-header{
-position:relative;
-padding:18px;
-display:flex;
-justify-content:center;
-align-items:center;
-border-bottom:1px solid #eee;
-}
-
-.back{
-position:absolute;
-left:18px;
-top:24px;
-text-decoration:none;
-color:#111;
-font-weight:700;
-}
-
-.logo{width:160px;max-width:58vw;}
-
-.cart-wrap{
-position:absolute;
-right:18px;
-top:22px;
-font-size:22px;
-text-decoration:none;
-color:#111;
-}
-
-.cart-count{
-position:absolute;
-top:-6px;
-right:-10px;
-background:#000;
-color:#fff;
-font-size:10px;
-width:18px;
-height:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-}
-
-.cart-count.hide{display:none;}
-
+body{font-family:Montserrat;background:#fff;color:#111;margin:0;padding:0;}
 .container{max-width:420px;margin:auto;padding:18px;}
 
-.gallery{overflow:hidden;border-radius:16px;}
-.slides{
-display:flex;
-transition:transform 0.65s cubic-bezier(0.22,1,0.36,1);
-}
-.slides img{
-width:100%;
-height:420px;
-object-fit:cover;
-flex-shrink:0;
-}
+.gallery{overflow:hidden;border-radius:14px;}
+.slides{display:flex;transition:0.6s cubic-bezier(0.22,1,0.36,1);}
+.slides img{width:100%;height:420px;object-fit:cover;flex-shrink:0;}
 
-.dots{
-display:flex;
-justify-content:center;
-gap:8px;
-margin-top:10px;
-}
-.dot{
-width:7px;height:7px;border-radius:50%;background:#ccc;
-}
-.dot.active{background:#111;transform:scale(1.2);}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:10px;}
+.dot{width:7px;height:7px;border-radius:50%;background:#ccc;}
+.dot.active{background:#111;}
 
-h1{text-align:center;font-size:1.05rem;margin-top:16px;}
-.price{text-align:center;font-weight:700;font-size:1.3rem;margin-top:8px;}
-.desc{text-align:center;color:#666;margin-top:10px;font-size:0.9rem;line-height:1.5;}
+h1{text-align:center;font-size:1rem;margin-top:16px;}
+.price{text-align:center;font-weight:700;margin-top:8px;}
+.desc{text-align:center;color:#666;font-size:0.9rem;margin-top:10px;}
 
-.label{margin-top:20px;font-weight:700;}
+.size-box{padding:12px;border:1px solid #ddd;border-radius:10px;text-align:center;cursor:pointer;flex:1;}
+.size-box.active{background:#111;color:#fff;}
+.size-box.disabled{opacity:0.4;pointer-events:none;}
 
-.size-grid{
-display:flex;
-gap:10px;
-margin-top:10px;
-}
-
-.size-box{
-flex:1;
-padding:12px;
-border:1px solid #ddd;
-border-radius:10px;
-text-align:center;
-font-weight:700;
-cursor:pointer;
-}
-
-.size-box.active{
-background:#111;
-color:#fff;
-border-color:#111;
-}
-
-.size-box.disabled{
-opacity:0.4;
-pointer-events:none;
-}
-
-.note{
-font-size:0.8rem;
-color:#666;
-margin-top:10px;
-}
+.size-row{display:flex;gap:10px;margin-top:12px;}
 
 .btn{
 width:100%;
 padding:14px;
 margin-top:18px;
-border:none;
 border-radius:10px;
 font-weight:700;
 cursor:pointer;
 }
 
-.primary{background:#111;color:#fff;}
+.primary{background:#111;color:#fff;border:none;}
 .secondary{background:#fff;border:1px solid #111;color:#111;}
 
-.toast{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-background:#111;
-color:#fff;
-padding:10px 14px;
-border-radius:8px;
-font-size:0.85rem;
-opacity:0;
-transition:0.3s;
-}
-.toast.show{opacity:1;}
+.note{font-size:0.8rem;color:#666;margin-top:10px;text-align:center;}
+
+header{text-align:center;padding:16px;border-bottom:1px solid #eee;}
+.logo{width:160px;}
 </style>
 </head>
 
 <body>
 
 <header>
-<a href="collections.html" class="back">←</a>
 <img src="assets/logo.png" class="logo">
-<a href="cart.html" class="cart-wrap">🛒<span class="cart-count hide" id="cartCount">0</span></a>
 </header>
 
 <div class="container">
@@ -171,9 +66,10 @@ transition:0.3s;
 <div class="price" id="price"></div>
 <div class="desc" id="desc"></div>
 
-<div class="label">Select Size</div>
+<!-- LIVE PRODUCT UI -->
+<div id="liveUI">
 
-<div class="size-grid">
+<div class="size-row">
 <div class="size-box disabled">S</div>
 <div class="size-box disabled">M</div>
 <div class="size-box" onclick="selectSize(this,'L')">L</div>
@@ -183,24 +79,63 @@ transition:0.3s;
 <div class="note">Runs slightly larger than standard sizing.</div>
 
 <button class="btn primary" id="cartBtn" onclick="addToCart()">Add to Cart</button>
-<button class="btn secondary" id="enquiryBtn">Send Enquiry</button>
 
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- COMING SOON UI -->
+<div id="comingUI" style="display:none;">
+<button class="btn secondary" onclick="enquiry()">Send Enquiry</button>
+<div class="note">Coming soon. Tap to get updates on Instagram.</div>
+</div>
+
+</div>
 
 <script>
 
-const product={
-id:"ferrari_2025",
-name:"Ferrari 2025 Drivers Jersey",
+const products={
+polo:{
+id:"polo",
+name:"Ferrari 2025 Drivers Wear",
 price:469,
-images:["assets/products/ferrari-front.jpg","assets/products/ferrari-back.jpg"],
+desc:"Race inspired jersey built for everyday wear.",
+images:[
+"assets/products/ferrari-front.jpg",
+"assets/products/ferrari-back.jpg"
+],
 live:true
+},
+
+monza:{
+id:"monza",
+name:"Ferrari Monza Edition",
+price:0,
+desc:"Limited edition drop coming soon.",
+images:[
+"assets/products/ferrari-monza.jpg"
+],
+live:false
+}
 };
 
-/* slider */
-let current=0;
+const params=new URLSearchParams(window.location.search);
+const id=params.get("id")||"polo";
+const product=products[id];
+
+/* TEXT */
+document.getElementById("name").innerText=product.name;
+document.getElementById("price").innerText=product.live?"₹"+product.price:"Coming Soon";
+document.getElementById("desc").innerText=product.desc;
+
+/* UI SWITCH */
+if(product.live){
+document.getElementById("liveUI").style.display="block";
+document.getElementById("comingUI").style.display="none";
+}else{
+document.getElementById("liveUI").style.display="none";
+document.getElementById("comingUI").style.display="block";
+}
+
+/* SLIDER */
 const slides=document.getElementById("slides");
 const dots=document.getElementById("dots");
 
@@ -209,35 +144,35 @@ slides.innerHTML+=`<img src="${img}">`;
 dots.innerHTML+=`<div class="dot ${i===0?'active':''}" onclick="go(${i})"></div>`;
 });
 
+let current=0;
+
 function go(i){
 current=i;
 if(current>=product.images.length) current=0;
 if(current<0) current=product.images.length-1;
 slides.style.transform=`translateX(-${current*100}%)`;
-document.querySelectorAll(".dot").forEach((d,i)=>d.classList.toggle("active",i===current));
+
+document.querySelectorAll(".dot").forEach((d,i)=>{
+d.classList.toggle("active",i===current);
+});
 }
 
-/* swipe */
-let startX=0;
-slides.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
-slides.addEventListener("touchend",e=>{
-let endX=e.changedTouches[0].clientX;
-if(endX<startX-40) go(current+1);
-if(endX>startX+40) go(current-1);
-});
-
-/* size */
+/* SIZE */
 let size="";
+
 function selectSize(el,s){
 document.querySelectorAll(".size-box").forEach(b=>b.classList.remove("active"));
 el.classList.add("active");
 size=s;
 }
 
-/* cart */
+/* CART */
 function addToCart(){
 
-if(!size) return showToast("Select size first");
+if(!size){
+alert("Select size");
+return;
+}
 
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
 
@@ -248,38 +183,19 @@ else cart.push({id:product.id,name:product.name,price:product.price,size,qty:1,i
 
 localStorage.setItem("cart",JSON.stringify(cart));
 
-showToast("Added to cart");
-updateCart();
+alert("Added");
 }
 
-/* enquiry */
-document.getElementById("enquiryBtn").onclick=function(){
+/* ENQUIRY */
+function enquiry(){
 
-let msg=`🛒 ENQUIRY - rev per min.%0A%0AProduct: ${product.name}%0APrice: ₹${product.price}`;
+let msg=`🛒 ENQUIRY - rev per min.%0A%0AProduct: ${product.name}`;
 
 navigator.clipboard.writeText(decodeURIComponent(msg));
 
 window.open("https://ig.me/m/revolutions.perminute","_blank");
 
-showToast("Enquiry copied");
-};
-
-/* cart */
-function updateCart(){
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
-let t=cart.reduce((a,b)=>a+b.qty,0);
-let badge=document.getElementById("cartCount");
-badge.innerText=t;
-badge.classList.toggle("hide",t===0);
-}
-updateCart();
-
-/* toast */
-function showToast(msg){
-let t=document.getElementById("toast");
-t.innerText=msg;
-t.classList.add("show");
-setTimeout(()=>t.classList.remove("show"),2000);
+alert("Copied to clipboard");
 }
 
 </script>
