@@ -1,4 +1,3 @@
-<!-- FULL UPDATED product.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,10 +70,7 @@ margin:auto;
 padding:22px;
 }
 
-.gallery{
-overflow:hidden;
-border-radius:16px;
-}
+.gallery{overflow:hidden;border-radius:16px;}
 
 .slides{
 display:flex;
@@ -103,9 +99,7 @@ background:#ccc;
 cursor:pointer;
 }
 
-.dot.active{
-background:#111;
-}
+.dot.active{background:#111;}
 
 h1{
 font-size:1.05rem;
@@ -135,6 +129,7 @@ font-size:0.9rem;
 font-weight:700;
 }
 
+/* SIZE BOXES */
 .fit-options{
 display:flex;
 gap:10px;
@@ -148,6 +143,8 @@ border:1px solid #ddd;
 background:#fff;
 border-radius:12px;
 cursor:pointer;
+text-align:center;
+font-weight:700;
 }
 
 .fit-btn.active{
@@ -156,15 +153,12 @@ color:#fff;
 border-color:#111;
 }
 
-.fit-title{
-font-size:0.92rem;
-font-weight:700;
-}
-
-.fit-sub{
-font-size:0.72rem;
-margin-top:4px;
-opacity:0.8;
+/* DISABLED S & M */
+.fit-btn.disabled{
+opacity:0.3;
+filter:blur(0.2px);
+pointer-events:none;
+cursor:not-allowed;
 }
 
 .fit-desc{
@@ -228,24 +222,22 @@ color:#fff;
 <div class="price" id="price"></div>
 <div class="desc" id="desc"></div>
 
-<div class="label" id="fitLabel">Choose Fit</div>
+<div class="label" id="fitLabel">Select Size</div>
 
 <div class="fit-options" id="fitWrap">
 
-<button class="fit-btn" onclick="pickFit(this,'Standard Fit')">
-<div class="fit-title">Standard Fit ⭐</div>
-<div class="fit-sub">Recommended</div>
-</button>
+<div class="fit-btn disabled">S</div>
+<div class="fit-btn disabled">M</div>
 
-<button class="fit-btn" onclick="pickFit(this,'Slim Fit')">
-<div class="fit-title">Slim Fit</div>
-<div class="fit-sub">Closer body fit</div>
-</button>
+<div class="fit-btn" onclick="pickFit(this,'L')">L</div>
+<div class="fit-btn" onclick="pickFit(this,'XL')">XL</div>
 
 </div>
 
 <div class="fit-desc" id="fitDesc">
-Runs slightly smaller than usual. Standard Fit recommended.
+⚠️ This drop runs one size larger than standard fit.<br>
+If you usually wear M, select S in standard sizing terms.<br>
+L and XL are relaxed fit for this collection.
 </div>
 
 <button class="cart-btn" id="cartBtn" onclick="addToCart()">Add to Cart</button>
@@ -253,6 +245,7 @@ Runs slightly smaller than usual. Standard Fit recommended.
 </div>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id") || "polo";
 
@@ -299,6 +292,7 @@ product.live ? "₹"+product.price : "Coming Soon";
 
 document.getElementById("desc").innerText = product.desc;
 
+/* SLIDER */
 const slides = document.getElementById("slides");
 const dots = document.getElementById("dots");
 
@@ -337,26 +331,7 @@ goSlide(current-1);
 }
 });
 
-/* COMING SOON PRODUCTS */
-if(!product.live){
-
-document.getElementById("fitWrap").style.display="none";
-document.getElementById("fitDesc").style.display="none";
-document.getElementById("fitLabel").style.display="none";
-document.getElementById("desc").style.display="none";
-
-let btn = document.getElementById("cartBtn");
-btn.innerText = "Send Enquiry";
-btn.classList.add("enquiry-btn");
-
-btn.onclick = function(){
-let msg = `Hello, I'm interested in ${product.name}. Please let me know when it becomes available.`;
-window.open("https://wa.me/919961365304?text="+encodeURIComponent(msg),"_blank");
-};
-
-}
-
-/* LIVE PRODUCT */
+/* SIZE */
 let selectedFit = "";
 
 function pickFit(el,fit){
@@ -368,15 +343,17 @@ btn.classList.remove("active");
 el.classList.add("active");
 selectedFit = fit;
 
+/* reset button */
 let btn = document.getElementById("cartBtn");
 btn.innerText = "Add to Cart";
 btn.classList.remove("added");
 }
 
+/* CART */
 function addToCart(){
 
 if(selectedFit===""){
-alert("Choose a fit first");
+alert("Choose a size first");
 return;
 }
 
@@ -408,6 +385,7 @@ btn.classList.add("added");
 updateCartCount();
 }
 
+/* CART COUNT */
 function updateCartCount(){
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -428,6 +406,7 @@ badge.classList.remove("hide");
 }
 
 updateCartCount();
+
 </script>
 
 </body>
