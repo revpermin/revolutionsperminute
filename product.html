@@ -71,7 +71,7 @@ margin:auto;
 padding:18px;
 }
 
-/* SLIDER */
+/* GALLERY */
 .gallery{
 overflow:hidden;
 border-radius:16px;
@@ -79,7 +79,7 @@ border-radius:16px;
 
 .slides{
 display:flex;
-transition:0.45s ease;
+transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .slides img{
@@ -112,26 +112,9 @@ transform:scale(1.2);
 }
 
 /* TEXT */
-h1{
-text-align:center;
-font-size:1.05rem;
-margin-top:18px;
-}
-
-.price{
-text-align:center;
-font-size:1.35rem;
-font-weight:700;
-margin-top:10px;
-}
-
-.desc{
-text-align:center;
-font-size:0.9rem;
-color:#666;
-margin-top:12px;
-line-height:1.6;
-}
+h1{text-align:center;font-size:1.05rem;margin-top:18px;}
+.price{text-align:center;font-size:1.35rem;font-weight:700;margin-top:10px;}
+.desc{text-align:center;font-size:0.9rem;color:#666;margin-top:12px;line-height:1.6;}
 
 /* SIZE */
 .label{
@@ -207,7 +190,6 @@ border:1px solid #111;
 <header>
 <a href="collections.html" class="back">←</a>
 <img src="assets/logo.png" class="logo">
-
 <a href="cart.html" class="cart-wrap">
 🛒<span class="cart-count hide" id="cartCount">0</span>
 </a>
@@ -230,13 +212,10 @@ border:1px solid #111;
 <div class="label">Select Size</div>
 
 <div class="size-grid">
-
 <div class="size-box disabled">S</div>
 <div class="size-box disabled">M</div>
-
 <div class="size-box" onclick="selectSize(this,'L')">L</div>
 <div class="size-box" onclick="selectSize(this,'XL')">XL</div>
-
 </div>
 
 <div class="fit-note">
@@ -252,7 +231,6 @@ border:1px solid #111;
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id") || "polo";
 
-/* ✅ IMPORTANT: UNIQUE PRODUCT ID ADDED */
 const products = {
 polo:{
 id:"ferrari_2025_jersey",
@@ -262,13 +240,13 @@ desc:"Race inspired jersey built for everyday wear.",
 images:[
 "assets/products/ferrari-front.jpg",
 "assets/products/ferrari-back.jpg"
-],
-live:true
+]
 }
 };
 
 const product = products[id];
 
+/* TEXT */
 document.getElementById("name").innerText = product.name;
 document.getElementById("price").innerText = "₹"+product.price;
 document.getElementById("desc").innerText = product.desc;
@@ -282,33 +260,43 @@ slides.innerHTML += `<img src="${img}">`;
 dots.innerHTML += `<div class="dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`;
 });
 
-let current=0;
+let current = 0;
 
 function goSlide(i){
-current=i;
-slides.style.transform=`translateX(-${i*100}%)`;
+
+current = i;
+
+/* LOOP */
+if(current >= product.images.length){
+current = 0;
+}
+if(current < 0){
+current = product.images.length - 1;
+}
+
+slides.style.transform = `translateX(-${current * 100}%)`;
 
 document.querySelectorAll(".dot").forEach((d,idx)=>{
-d.classList.toggle("active",idx===i);
+d.classList.toggle("active",idx===current);
 });
 }
 
 /* SWIPE */
-let startX=0;
+let startX = 0;
 
 slides.addEventListener("touchstart",e=>{
-startX=e.touches[0].clientX;
+startX = e.touches[0].clientX;
 });
 
 slides.addEventListener("touchend",e=>{
-let endX=e.changedTouches[0].clientX;
+let endX = e.changedTouches[0].clientX;
 
-if(endX<startX-40 && current<product.images.length-1) goSlide(current+1);
-if(endX>startX+40 && current>0) goSlide(current-1);
+if(endX < startX - 40) goSlide(current + 1);
+if(endX > startX + 40) goSlide(current - 1);
 });
 
 /* SIZE */
-let selectedSize="";
+let selectedSize = "";
 
 function selectSize(el,size){
 
@@ -317,15 +305,14 @@ b.classList.remove("active");
 });
 
 el.classList.add("active");
-selectedSize=size;
+selectedSize = size;
 
-/* reset button */
-let btn=document.getElementById("cartBtn");
-btn.innerText="Add to Cart";
+let btn = document.getElementById("cartBtn");
+btn.innerText = "Add to Cart";
 btn.classList.remove("added");
 }
 
-/* CART - FINAL FIX (ID + SIZE BASED MERGE) */
+/* CART (MERGE FIX) */
 function addToCart(){
 
 if(selectedSize===""){
@@ -335,14 +322,13 @@ return;
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* MERGE LOGIC USING ID + SIZE */
-let existingItem = cart.find(item =>
+let existing = cart.find(item =>
 item.id === product.id &&
 item.size === selectedSize
 );
 
-if(existingItem){
-existingItem.qty += 1;
+if(existing){
+existing.qty += 1;
 }else{
 cart.push({
 id: product.id,
@@ -356,8 +342,8 @@ img: product.images[0]
 
 localStorage.setItem("cart", JSON.stringify(cart));
 
-let btn=document.getElementById("cartBtn");
-btn.innerText="Added to Cart";
+let btn = document.getElementById("cartBtn");
+btn.innerText = "Added to Cart";
 btn.classList.add("added");
 
 updateCart();
@@ -369,15 +355,13 @@ function updateCart(){
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
-cart.forEach(item=>{
-total += item.qty;
-});
+cart.forEach(i=>total+=i.qty);
 
 let badge = document.getElementById("cartCount");
 
 badge.innerText = total;
 
-if(total === 0) badge.classList.add("hide");
+if(total===0) badge.classList.add("hide");
 else badge.classList.remove("hide");
 }
 
